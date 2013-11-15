@@ -22,7 +22,6 @@
 
 
 IDPROC *init, *pSCI, *pKeyboard, *pProgram, *pCas, *pMenu;
-IDQUEUE* s1;
 
 void sci( void );
 void keyboard( void );
@@ -39,10 +38,12 @@ void dokonciCinnost(void);
 void ukonci(void);
 
 unsigned long cas = 0,spozdeni = 0, zacatekPrani = 0,celkovyCas = 0;
-char buffer[32];
-int stav = 0, prog = 0, kurzor = 0, uroven = 0;
+char buffer[32],znak;
+int stav = 0, initState = 0, prog = 0, kurzor = -1, uroven = 0, pozice = 0;
 int stats[] = {0,0,0,0,0};
 int programy[] = {0b01001110,0b10001111,0b00010010,0b00101010,0b00101011};
+int factoryNum = 1111;
+char *factoryDate = "1.1.1970";
 //prog význam bitù
 //1 - odložený start
 //2 - pøedpírka
@@ -59,14 +60,16 @@ void main(void) {
 
 
   asm_main(); /* call the assembly function */
-#if 0  
+#if 1
+  sci1_init(BD9600);  
   dinit();
-  setcursor(1,1);
-  dtext("Praèka");
+  dcls();
+  dtext("Pracka");
 #endif
   gpio_hard_init();
   gpio_button_init(0xf0);
   gpio_led_init(0xf);
+  gpio_led_off(0xf);
   
   ATD1C = 0xC4;   	// zapnuti prevodniku, 8 bit vysledek    
   ATD1PE = 1;     	// pin PTB0 prepneme do rezimu 			  	// vstupu A/D prevodniku  
@@ -81,7 +84,7 @@ void main(void) {
   rtm_create_p("proc7", 254, menu, 0x100, &pMenu );
   
   rtm_start_p(pCas, 0, 20);
-  rtm_start_p(pKeyboard, 0, 1);
+  rtm_start_p(pKeyboard, 0, 2);
   rtm_start_p(pMenu,0,0);
   rtm_delay_p(init, 0);
 
@@ -104,42 +107,79 @@ void casPracky( void )
 
 void menu( void ) {
   while(1){
+    __RESET_WATCHDOG();
     ATD1SC = 0;                                      // spusteni prevodu
     while(ATD1SC_CCF == 0);
-    dcls();
-    if(ATD1R == 0){//potenctiometr je na 0, rezervováno pro položku zpìt nebo konec
-      if(uroven == 0)
-        dtext("Konec");
-      else
-        dtext("Zpìt");
-      kurzor = 0;
-    } else if(uroven == 0 && ATD1R <= 255){//hlavní nabídka a výbìr programu
-      dtext("Vyber programu");
-      kurzor = 1;
-    } else if(uroven == 0 && ATD1R <= 510){
-      dtext("Odlozeny start");
-      kurzor = 2;
-    } else if(uroven == 0 && ATD1R <= 765){
-      dtext("Cas");
-      kurzor = 3;
+    if(ATD1R < 10){//potenctiometr je na 0, rezervováno pro položku zpìt nebo konec
+      if(kurzor != 0)
+      {
+        dcls();
+        if(uroven == 0)        
+            dtext("Konec");
+        else
+            dtext("Zpet");
+        kurzor = 0;
+      }
+    } else if(uroven == 0 && ATD1R <= 204){//hlavní nabídka a výbìr programu
+      if(kurzor != 1){
+        dcls();
+        dtext("Vyber programu");
+        kurzor = 1;
+      }
+    } else if(uroven == 0 && ATD1R <= 408){
+        if(kurzor != 2){
+            dcls();
+            dtext("Odlozeny start");
+            kurzor = 2;
+        }
+    } else if(uroven == 0 && ATD1R <= 612){
+        if(kurzor != 3){
+            dcls();
+            dtext("Cas");
+            kurzor = 3;
+        }
+    } else if(uroven == 0 && ATD1R <= 816){
+        if(kurzor != 4){
+            dcls();
+            dtext("Diagnostika");
+            kurzor = 4;
+        }
     } else if(uroven == 0 && ATD1R <= 1023){
-      dtext("Start");
-      kurzor = 4;
+        if(kurzor != 5)
+        {   dcls();
+            dtext("Start");
+            kurzor = 5;
+        }
     } else if(uroven == 1 && ATD1R <= 204){//podmenu pro výber programu
-      dtext("Program 1");
-      kurzor = 1;
+      if(kurzor != 1){
+        dcls();
+        dtext("Program 1");
+        kurzor = 1;
+      }
     } else if(uroven == 1 && ATD1R <= 408){
-      dtext("Program 2");
-      kurzor = 2;
+        if(kurzor != 2){
+            dcls();
+            dtext("Program 2");
+            kurzor = 2;
+        }
     } else if(uroven == 1 && ATD1R <= 612){
-      dtext("Program 3");
-      kurzor = 3;
+      if(kurzor != 3){
+            dcls();
+            dtext("Program 3");
+            kurzor = 3;
+        }
     } else if(uroven == 1 && ATD1R <= 816){
-      dtext("Program 4");
-      kurzor = 4;
+      if(kurzor != 4){
+            dcls();
+            dtext("Program 4");
+            kurzor = 4;
+        }
     } else if(uroven == 1 && ATD1R <= 1023){
-      dtext("Program 5");
-      kurzor = 5;
+      if(kurzor != 5){
+            dcls();
+            dtext("Program 5");
+            kurzor = 5;
+        }
     } else if(uroven == 2){
       spozdeni = ATD1R;
       sprintf(buffer,"Spozdeni %d:%d",(ATD1R / 60), ((ATD1R % 60)*60));
@@ -151,7 +191,49 @@ void menu( void ) {
 
 void sci( void )
 {
-  
+  int povoleno = 0;
+  char *ukChar;
+  sci1_str_out("Zadejte heslo\r\n");
+  pozice = 0;
+    
+  while(1){
+    do{
+      znak = sci1_in();
+      buffer[pozice++] = znak;
+    }while(znak != '\0' || pozice != 30);
+    if(strstr(buffer,"1234") != NULL || povoleno == 1){
+      if(strstr(buffer,"setTime") != NULL){
+        ukChar = strstr(buffer,"setTime") + 8;
+        cas = (10 * (*ukChar + '0') + *(ukChar + 1) + '0') * 60;
+        cas += (10 * (*(ukChar + 3) + '0') + *(ukChar + 4) + '0');
+      } else if(strstr(buffer,"clean") != NULL){
+        stats[0] = 0;
+        stats[1] = 0;
+        stats[2] = 0;
+        stats[3] = 0;
+        stats[4] = 0;
+        celkovyCas = 0;
+      } else if(strstr(buffer,"getTime") != NULL){
+        sprintf(buffer,"%d:%d\r\n",(cas / 60),(cas % 60) * 60);
+        sci1_str_out(buffer);
+      } else if(strstr(buffer,"getActiveTime") != NULL){
+        sprintf(buffer,"%d:%d\r\n",(celkovyCas / 60),(celkovyCas % 60) * 60);
+        sci1_str_out(buffer);
+      } else if(strstr(buffer,"getFactory") != NULL){
+        sprintf(buffer,"Výrobní èíslo - %d\r\nDatum výroby - %s\r\n",factoryNum,factoryDate);
+        sci1_str_out(buffer);
+      } else if(strstr(buffer,"getStats") != NULL){
+        sprintf(buffer,"Program 1 - %d\r\nProgram 2 - %d\r\nProgram 3 - %d\r\nProgram 4 - %d\r\nProgram 5 - %d\r\n",stats[0],stats[1],stats[2],stats[3],stats[4]);
+        sci1_str_out(buffer);
+      } else if(strstr(buffer,"konec") != NULL){
+        return;
+      }
+      povoleno = 1;
+      pozice = 0;
+    } else
+      break;
+  }
+  pozice = 0;
   rtm_stop_p(pSCI);
 }
 
@@ -159,7 +241,66 @@ void keyboard( void )
 {
   __RESET_WATCHDOG();
   if(gpio_button_test(0x10) && stav == 0){
-    if(uroven == 0 && kurzor == 0){//zastavení praèky
+  douta(uroven + '0');
+  rtm_delay_p(pKeyboard,1);
+  if(gpio_button_test(0x10) == 0 && stav != 0)
+    return;
+    if(uroven == 1 && kurzor == 0){
+      uroven = 0;
+    } else if(uroven == 1 && kurzor == 1){//program 1
+      uroven = 0;
+      prog = programy[0] << 1;
+      if(spozdeni != 0){
+        prog |= 1;
+        initState = 1;
+      } else
+        initState = 3;
+      gpio_led_off(0xf);
+      gpio_led_on(0x1);
+    } else if(uroven == 1 && kurzor == 2){//program 2
+      uroven = 0;
+      prog = programy[1] << 1;
+      if(spozdeni != 0){
+        prog |= 1;
+        initState = 1;
+      } else
+        initState = 2;
+      gpio_led_off(0xf);
+      gpio_led_on(0x2);
+    } else if(uroven == 1 && kurzor == 3){//program 3
+      uroven = 0;
+      prog = programy[2] << 1;
+      if(spozdeni != 0){
+        prog |= 1;
+        initState = 1;
+      } else
+        initState = 3;
+      gpio_led_off(0xf);
+      gpio_led_on(0x3);
+    } else if(uroven == 1 && kurzor == 4){//program 4
+      uroven = 0;
+      prog = programy[3] << 1;
+      if(spozdeni != 0){
+        prog |= 1;
+        initState = 1;
+      } else
+        initState = 3;
+      gpio_led_off(0xf);
+      gpio_led_on(0x4);
+    } else if(uroven == 1 && kurzor == 5){//program 5
+      uroven = 0;
+      prog = programy[4] << 1;
+      if(spozdeni != 0){
+        prog |= 1;
+        initState = 1;
+      } else
+        initState = 2;
+      gpio_led_off(0xf);
+      gpio_led_on(0x5);
+    } else if(uroven == 2){
+      uroven = 0;
+    } else if(uroven == 0 && kurzor == 0){//zastavení praèky
+      rtm_ch_period_p(pKeyboard, 0);
       rtm_stop_p(pKeyboard);//pravdìpodobnì bude tøeba zmìnit i periody spouštìní na 0
       rtm_stop_p(pCas);
     } else if(uroven == 0 && kurzor == 1){
@@ -168,71 +309,42 @@ void keyboard( void )
       uroven = 2;
     } else if(uroven == 0 && kurzor == 3){
       dcls();
-      sprintf(buffer,"Cas %d:%d",(cas / 60),((cas % 60) * 60));
+      sprintf(buffer,"%d:%d",(cas / 60),(cas % 60) * 60);
       dtext(buffer);
     } else if(uroven == 0 && kurzor == 4){
+      dcls();
+      dtext("Diagnostika");
+      rtm_ch_period_p(pKeyboard,0);
+      rtm_start_p(pSCI,0,0);
+    } else if(uroven == 0 && kurzor == 5){
       //spuštìní programu
       if(spozdeni != 0)
         spozdeni += cas;
       stats[prog]++;      
       zacatekPrani = cas;
       rtm_start_p(pProgram,0,0);
-    } else if(uroven == 1 && kurzor == 0){
-      uroven = 0;
-    } else if(uroven == 1 && kurzor == 1){//program 1
-      uroven = 0;
-      prog = 0;
-      if(spozdeni != 0){
-        prog = (prog << 1) | 1;
-        stav = 1;
-      } else
-        stav = 3;
-      gpio_led_off(0xf);
-      gpio_led_on(0x1);
-    } else if(uroven == 1 && kurzor == 2){//program 2
-      uroven = 0;
-      prog = 1;
-      if(spozdeni != 0){
-        prog = (prog << 1) | 1;
-        stav = 1;
-      } else
-        stav = 2;
-      gpio_led_off(0xf);
-      gpio_led_on(0x2);
-    } else if(uroven == 1 && kurzor == 3){//program 3
-      uroven = 0;
-      prog = 2;
-      if(spozdeni != 0){
-        prog = (prog << 1) | 1;
-        stav = 1;
-      } else
-        stav = 3;
-      gpio_led_off(0xf);
-      gpio_led_on(0x3);
-    } else if(uroven == 1 && kurzor == 4){//program 4
-      uroven = 0;
-      prog = 3;
-      if(spozdeni != 0){
-        prog = (prog << 1) | 1;
-        stav = 1;
-      } else
-        stav = 3;
-      gpio_led_off(0xf);
-      gpio_led_on(0x4);
-    } else if(uroven == 1 && kurzor == 1){//program 5
-      uroven = 0;
-      prog = 4;
-      if(spozdeni != 0){
-        prog = (prog << 1) | 1;
-        stav = 1;
-      } else
-        stav = 2;
-      gpio_led_off(0xf);
-      gpio_led_on(0x5);
-    } else if(uroven == 2){
-      uroven = 0;
+    } 
+  } else if(gpio_button_test(0x20) && stav == 0){
+    rtm_ch_period_p(pKeyboard,0);
+    while(gpio_button_test(0x20)){
+      ATD1SC = 0;                                      // spusteni prevodu
+      while(ATD1SC_CCF == 0);
+      cas = 3600 * ATD1R / 1023;
+      sprintf(buffer, "%d:%d",(cas / 60),(cas % 60) * 60);
     }
-  }else if(gpio_button_test(0x80) && stav != 0){
+    rtm_ch_period_p(pKeyboard,2);
+  } else if(gpio_button_test(0x40) && stav == 0){
+    rtm_ch_period_p(pKeyboard,0);
+    while(gpio_button_test(0x20)){
+      ATD1SC = 0;                                      // spusteni prevodu
+      while(ATD1SC_CCF == 0);
+      cas = 60 * ATD1R / 1023;
+      sprintf(buffer, "%d:%d",(cas / 60),(cas % 60) * 60);
+    }
+    rtm_ch_period_p(pKeyboard,2);
+  } else if(gpio_button_test(0x80) && stav != 0){
+    if(stav == 1)
+      rtm_stop_p(pProgram);
     stav = 6;
     driver_pracka_vypust(1);
     driver_pracka_napust(0);
@@ -240,15 +352,17 @@ void keyboard( void )
     driver_buben_rychlost(0);
     driver_buben_smer(0);
     prog = 0;
-    rtm_stop_p(pProgram);
+    initState = 0;
   }
   rtm_stop_p(pKeyboard);
 }
 
 void program( void )
 {
+  dcls();
   setcursor(1,1);
   dtext("Program");
+  stav = initState;
   programSequence();
   rtm_stop_p(pProgram);
 }
@@ -258,9 +372,9 @@ void programSequence(){
       if(((prog >> (stav - 1)) & 1) != 0){
         
       switch(stav){
-        case 1://spozdìné praní 
+        case 1 ://spozdìné praní 
           if(cas >= spozdeni){
-            stav++;
+            ++stav;
           } else{
             dcls();
             dtext("Program zacne za");
@@ -269,25 +383,25 @@ void programSequence(){
             dtext(buffer);
           }
         break;
-        case 2://pøedpírka
+        case 2 : //pøedpírka
           dcls();
           dtext("Predpirka");
           predpirka();
-          stav = (stav != 6 ? stav++ : 6);
+          stav = (stav != 6 ? ++stav : 6);
         break;
-        case 3://hlavní praní
+        case 3 : //hlavní praní
           dcls();
           dtext("Hlavni prani");          
           hlavniPrani();
-          stav = (stav != 6 ? stav++ : 6);
+          stav = (stav != 6 ? ++stav : 6);
         break;
-        case 4://machani
+        case 4 : //machani
           dcls();
-          dtext("Máchání");
+          dtext("Machani");
           machani();
-          stav = (stav != 6 ? stav++ : 6);
+          stav = (stav != 6 ? ++stav : 6);
         break;
-        case 5://zdimani
+        case 5 : //zdimani
           dcls();
           dtext("Zdimani");
           zdimani();
@@ -299,6 +413,8 @@ void programSequence(){
           gpio_led_off(0xf);
           celkovyCas += (cas - zacatekPrani);
           prog = 0;
+          stav = 0;
+          initState = 0;
           return;
         break;
       }
@@ -372,7 +488,8 @@ void zdimani(){
   driver_buben_smer(1);
   driver_buben_rychlost(1);
   driver_pracka_vypust(1);
-  while(cas <= casPom);
+  while(cas <= casPom)
+    __RESET_WATCHDOG();
   driver_pracka_vypust(0);  
 }
 
@@ -381,7 +498,8 @@ void dokonciCinnost(){
   driver_pracka_vypust(1);
   while(driver_pracka_hladina() != 0);
   casPom = cas + 5;
-  while(cas <= casPom);
+  while(cas <= casPom)
+    __RESET_WATCHDOG();
 }
 
 void tocBubnem(int doba){
@@ -394,7 +512,8 @@ void tocBubnem(int doba){
     while(cas <= casPom);
     smer *= -1;
     driver_buben_smer(0);
-    while(cas <= casPom + 1);
+    while(cas <= casPom + 1)
+        __RESET_WATCHDOG();
     driver_buben_smer(smer);
   }
   driver_buben_smer(0);
