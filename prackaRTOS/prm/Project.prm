@@ -5,7 +5,7 @@ NAMES END /* CodeWarrior will pass all the needed files to the linker by command
 SEGMENTS /* Here all RAM/ROM areas of the device are listed. Used in PLACEMENT below. */
     Z_RAM                    =  READ_WRITE   0x0080 TO 0x00FF;
     RAM                      =  READ_WRITE   0x0100 TO 0x107F;
-    ROM                      =  READ_ONLY    0x182C TO 0xFFAF;
+    ROM                      =  READ_ONLY    0x182C TO  0xFBAF;
     ROM1                     =  READ_ONLY    0x1080 TO 0x17FF;
     ROM2                     =  READ_ONLY    0xFFC0 TO 0xFFCB;
  /* INTVECTS                 =  READ_ONLY    0xFFCC TO 0xFFFF; Reserved for Interrupt Vectors */

@@ -1,5 +1,5 @@
 
-PROGRAM "C:\Users\darkmoon\Documents\prackaMPC\prackaRTOS\bin\Project.abs"
+PROGRAM "D:\tj\prackaRTOS\bin\Project.abs"
 
 *********************************************************************************************
 TARGET SECTION
@@ -38,23 +38,23 @@ _startupData is allocated at 0x18B0 and uses 6 Bytes
 extern struct _tagStartup {
   unsigned nofZeroOut     3
   _Range   pZeroOut       0x80     1
-                          0x100     16
-                          0x190     1388
-  _Copy    *toCopyDownBeg 0x4ACE
+                          0x100     20
+                          0x194     1417
+  _Copy    *toCopyDownBeg 0x4F79
 } _startupData;
 
 *********************************************************************************************
 SECTION-ALLOCATION SECTION
 Section Name                    Size  Type     From       To       Segment
 ---------------------------------------------------------------------------------------------
-.data                             16   R/W      0x100      0x10F   RAM
-.stack                           128   R/W      0x110      0x18F   RAM
+.data                             20   R/W      0x100      0x113   RAM
+.stack                           128   R/W      0x114      0x193   RAM
 .init                            132     R     0x182C     0x18AF   ROM
 .startData                        18     R     0x18B0     0x18C1   ROM
 .rodata                          212     R     0x18C2     0x1995   ROM
-.rodata1                         546     R     0x1996     0x1BB7   ROM
-.text                          11546     R     0x1BB8     0x48D1   ROM
-.copy                             22     R     0x4ACE     0x4AE3   ROM
+.rodata1                         757     R     0x1996     0x1C8A   ROM
+.text                          12530     R     0x1C8B     0x4D7C   ROM
+.copy                             23     R     0x4F79     0x4F8F   ROM
 MY_ZEROPAGE                        1   R/W       0x80       0x80   Z_RAM
 .abs_section_0                     1   N/I        0x0        0x0   .absSeg108
 .abs_section_1                     1   N/I        0x1        0x1   .absSeg109
@@ -165,14 +165,14 @@ MY_ZEROPAGE                        1   R/W       0x80       0x80   Z_RAM
 .abs_section_1806                  2   N/I     0x1806     0x1807   .absSeg214
 .abs_section_1814                  2   N/I     0x1814     0x1815   .absSeg215
 rtmon_rtmon_asm.asm__ORG00001          2     R     0xFFEE     0xFFEF   .absSeg216
-.bss                              42   R/W      0x190      0x1B9   RAM
-MyCode                           508     R     0x48D2     0x4ACD   ROM
-.common                         1346   R/W      0x1BA      0x6FB   RAM
+.bss                              38   R/W      0x194      0x1B9   RAM
+MyCode                           508     R     0x4D7D     0x4F78   ROM
+.common                         1379   R/W      0x1BA      0x71C   RAM
 .vectSeg217_vect                   2     R     0xFFFE     0xFFFF   .vectSeg217
 
 Summary of section sizes per section type:
-READ_ONLY (R):        32BC (dec:    12988)
-READ_WRITE (R/W):      5FD (dec:     1533)
+READ_ONLY (R):        3768 (dec:    14184)
+READ_WRITE (R/W):      61E (dec:     1566)
 NO_INIT (N/I):          7E (dec:      126)
 
 *********************************************************************************************
@@ -187,54 +187,55 @@ OBJECT-ALLOCATION SECTION
 ---------------------------------------------------------------------------------------------
 MODULE:                 -- disp_gb60.asm.o --
 - PROCEDURES:
-     dinit                                     48D2      72     114       1   MyCode      
-     douta                                     4944       5       5       2   MyCode      
-     dtext                                     4949       3       3      20   MyCode      
-     dt1                                       494C       C      12       0   MyCode      
-     dtend                                     4958       4       4       0   MyCode      
-     dcls                                      495C      13      19      20   MyCode      
-     setcursor                                 496F       B      11       4   MyCode      
-     sc1                                       497A       2       2       0   MyCode      
-     sc2                                       497C       9       9       0   MyCode      
-     wr_cmd                                    4985      31      49       8   MyCode      
-     wr_data                                   49B6      31      49       1   MyCode      
-     w5ms                                      49E7       6       6       4   MyCode      
-     w11                                       49ED       D      13       0   MyCode      
-     w500ns                                    49FA       5       5      18   MyCode      
-     waitbf                                    49FF       3       3       2   MyCode      
-     wbf1                                      4A02      2B      43       0   MyCode      
+     dinit                                     4D7D      72     114       1   MyCode      
+     douta                                     4DEF       5       5       1   MyCode      
+     dtext                                     4DF4       3       3      28   MyCode      
+     dt1                                       4DF7       C      12       0   MyCode      
+     dtend                                     4E03       4       4       0   MyCode      
+     dcls                                      4E07      13      19      30   MyCode      
+     setcursor                                 4E1A       B      11       5   MyCode      
+     sc1                                       4E25       2       2       0   MyCode      
+     sc2                                       4E27       9       9       0   MyCode      
+     wr_cmd                                    4E30      31      49       8   MyCode      
+     wr_data                                   4E61      31      49       1   MyCode      
+     w5ms                                      4E92       6       6       4   MyCode      
+     w11                                       4E98       D      13       0   MyCode      
+     w500ns                                    4EA5       5       5      18   MyCode      
+     waitbf                                    4EAA       3       3       2   MyCode      
+     wbf1                                      4EAD      2B      43       0   MyCode      
 - VARIABLES:
 MODULE:                 -- gpio.c.o --
 - PROCEDURES:
-     gpio_led_init                             1BB8      12      18       1   .text       
-     gpio_led_on                               1BCA       7       7       1   .text       
-     gpio_led_off                              1BD1       C      12       3   .text       
-     gpio_button_init                          1BDD      12      18       1   .text       
-     gpio_button_test                          1BEF      12      18       1   .text       
-     gpio_write_c                              1C01      15      21       8   .text       
-     gpio_mode_c                               1C16      27      39       1   .text       
-     gpio_read_d                               1C3D       C      12       2   .text       
-     gpio_write_d                              1C49      15      21       2   .text       
-     gpio_mode_d                               1C5E      27      39       1   .text       
-     gpio_read_e                               1C85       C      12       2   .text       
-     gpio_hard_init                            1C91      17      23       1   .text       
+     gpio_led_init                             1C8B      12      18       1   .text       
+     gpio_led_on                               1C9D       7       7       1   .text       
+     gpio_led_off                              1CA4       C      12       3   .text       
+     gpio_button_init                          1CB0      12      18       1   .text       
+     gpio_button_test                          1CC2      12      18       3   .text       
+     gpio_write_c                              1CD4      15      21       8   .text       
+     gpio_mode_c                               1CE9      27      39       1   .text       
+     gpio_read_d                               1D10       C      12       2   .text       
+     gpio_write_d                              1D1C      15      21       2   .text       
+     gpio_mode_d                               1D31      27      39       1   .text       
+     gpio_read_e                               1D58       C      12       2   .text       
+     gpio_hard_init                            1D64      17      23       1   .text       
 - VARIABLES:
 MODULE:                 -- main.c.o --
 - PROCEDURES:
-     main                                      1CA8     11F     287       1   .text       
-     casPracky                                 1DC7       F      15       1   .text       
-     menu                                      1DD6     1BE     446      12   .text       
-     sci                                       1F94     28E     654       8   .text       
-     keyboard                                  2222     3D0     976      44   .text       
-     program                                   25F2      1E      30       1   .text       
-     programSequence                           2610     163     355       4   .text       
-     ukonci                                    2773      55      85       1   .text       
-     predpirka                                 27C8      1C      28       1   .text       
-     hlavniPrani                               27E4      A0     160       1   .text       
-     machani                                   2884      1C      28       1   .text       
-     zdimani                                   28A0      42      66       1   .text       
-     dokonciCinnost                            28E2      39      57       3   .text       
-     tocBubnem                                 291B      98     152       3   .text       
+     main                                      1D7B     12F     303       1   .text       
+     casPracky                                 1EAA       F      15       1   .text       
+     menu                                      1EB9     2B7     695      32   .text       
+     sci                                       2170     2C2     706      11   .text       
+     keyboard                                  2432     455    1109      68   .text       
+     program                                   2887      2E      46       1   .text       
+     programSequence                           28B5     157     343       4   .text       
+     ukonci                                    2A0C      5F      95       1   .text       
+     predpirka                                 2A6B      29      41       1   .text       
+     hlavniPrani                               2A94      AB     171       1   .text       
+     machani                                   2B3F      29      41       1   .text       
+     zdimani                                   2B68      4A      74       1   .text       
+     dokonciCinnost                            2BB2      56      86       3   .text       
+     tocBubnem                                 2C08      A0     160       3   .text       
+     intToTime                                 2CA8      9F     159       8   .text       
 - VARIABLES:
      STRING.1.1.1970.1                         1996       9       9       1   .rodata1    
      STRING.Pracka.2                           199F       7       7       1   .rodata1    
@@ -243,85 +244,110 @@ MODULE:                 -- main.c.o --
      STRING.proc5.5                            19B2       6       6       1   .rodata1    
      STRING.proc6.6                            19B8       6       6       1   .rodata1    
      STRING.proc7.7                            19BE       6       6       1   .rodata1    
-     STRING.Nyni.muzete.8                      19C4       C      12       1   .rodata1    
-     STRING.pracku.vypnout.9                   19D0       F      15       1   .rodata1    
-     STRING.Konec.10                           19DF       6       6       1   .rodata1    
-     STRING.Zpet.11                            19E5       5       5       1   .rodata1    
-     STRING.Vyber.programu.12                  19EA       F      15       1   .rodata1    
-     STRING.Odlozeny.start.13                  19F9       F      15       1   .rodata1    
-     STRING.Cas.14                             1A08       4       4       1   .rodata1    
-     STRING.Diagnostika.15                     1A0C       C      12       1   .rodata1    
-     STRING.Start.16                           1A18       6       6       1   .rodata1    
-     STRING.Program.1.17                       1A1E       A      10       1   .rodata1    
-     STRING.Program.2.18                       1A28       A      10       1   .rodata1    
-     STRING.Program.3.19                       1A32       A      10       1   .rodata1    
-     STRING.Program.4.20                       1A3C       A      10       1   .rodata1    
-     STRING.Program.5.21                       1A46       A      10       1   .rodata1    
-     STRING.Spozdeni..d..d.22                  1A50       F      15       1   .rodata1    
-     STRING.Zadejte.heslo...23                 1A5F      10      16       1   .rodata1    
-     STRING.1234.24                            1A6F       5       5       1   .rodata1    
-     STRING.setTime.25                         1A74       8       8       1   .rodata1    
-     STRING.setTime.26                         1A7C       8       8       1   .rodata1    
-     STRING.clean.27                           1A84       6       6       1   .rodata1    
-     STRING.getTime.28                         1A8A       8       8       1   .rodata1    
-     STRING..d..d...29                         1A92       8       8       1   .rodata1    
-     STRING.getActiveTime.30                   1A9A       E      14       1   .rodata1    
-     STRING..d..d...31                         1AA8       8       8       1   .rodata1    
-     STRING.getFactory.32                      1AB0       B      11       1   .rodata1    
-     STRING.V.robn....slo....d...33            1ABB      28      40       1   .rodata1    
-     STRING.getStats.34                        1AE3       9       9       1   .rodata1    
-     STRING.Program.1....d..Prog.35            1AEC      51      81       1   .rodata1    
-     STRING.konec.36                           1B3D       6       6       1   .rodata1    
-     STRING..d..d.37                           1B43       6       6       1   .rodata1    
-     STRING.Diagnostika.38                     1B49       C      12       1   .rodata1    
-     STRING..d..d.39                           1B55       6       6       1   .rodata1    
-     STRING..d..d.40                           1B5B       6       6       1   .rodata1    
-     STRING.Program.41                         1B61       8       8       1   .rodata1    
-     STRING.Program.zacne.za.42                1B69      11      17       1   .rodata1    
-     STRING..d..d.43                           1B7A       6       6       1   .rodata1    
-     STRING.Predpirka.44                       1B80       A      10       1   .rodata1    
-     STRING.Hlavni.prani.45                    1B8A       D      13       1   .rodata1    
-     STRING.Machani.46                         1B97       8       8       1   .rodata1    
-     STRING.Zdimani.47                         1B9F       8       8       1   .rodata1    
-     STRING.Ukoncovani.48                      1BA7       B      11       1   .rodata1    
-     kurzor                                     100       2       2      24   .data       
-     programy                                   102       A      10      10   .data       
-     factoryNum                                 10C       2       2       1   .data       
-     factoryDate                                10E       2       2       1   .data       
-     cas                                        190       4       4      31   .bss        
-     spozdeni                                   194       4       4       7   .bss        
+     STRING.no.8                               19C4       3       3       1   .rodata1    
+     STRING.Nyni.muzete.9                      19C7       C      12       1   .rodata1    
+     STRING.pracku.vypnout.10                  19D3       F      15       1   .rodata1    
+     STRING.Konec.11                           19E2       6       6       1   .rodata1    
+     STRING.Zpet.12                            19E8       5       5       1   .rodata1    
+     STRING.Vyber.programu.13                  19ED       F      15       1   .rodata1    
+     STRING.Odlozeny.start.14                  19FC       F      15       1   .rodata1    
+     STRING.Cas.15                             1A0B       4       4       1   .rodata1    
+     STRING.Diagnostika.16                     1A0F       C      12       1   .rodata1    
+     STRING.Start.17                           1A1B       6       6       1   .rodata1    
+     STRING.Program.1.18                       1A21       A      10       1   .rodata1    
+     STRING.Program.2.19                       1A2B       A      10       1   .rodata1    
+     STRING.Program.3.20                       1A35       A      10       1   .rodata1    
+     STRING.Program.4.21                       1A3F       A      10       1   .rodata1    
+     STRING.Program.5.22                       1A49       A      10       1   .rodata1    
+     STRING.Vypsani.casu.23                    1A53       D      13       1   .rodata1    
+     STRING.Nastaveni.hodin.24                 1A60      10      16       1   .rodata1    
+     STRING.Nastaveni.minut.25                 1A70      10      16       1   .rodata1    
+     STRING.Cas..26                            1A80       5       5       1   .rodata1    
+     STRING.Cas..27                            1A85       5       5       1   .rodata1    
+     STRING.Spozdeni..28                       1A8A       A      10       1   .rodata1    
+     STRING.Zadejte.heslo...29                 1A94      10      16       1   .rodata1    
+     STRING.1234.30                            1AA4       5       5       1   .rodata1    
+     STRING.Prihlasen...31                     1AA9       C      12       1   .rodata1    
+     STRING.setTime.32                         1AB5       8       8       1   .rodata1    
+     STRING.setTime.33                         1ABD       8       8       1   .rodata1    
+     STRING.clean.34                           1AC5       6       6       1   .rodata1    
+     STRING.getTime.35                         1ACB       8       8       1   .rodata1    
+     STRING....36                              1AD3       3       3       1   .rodata1    
+     STRING.getActiveTime.37                   1AD6       E      14       1   .rodata1    
+     STRING....38                              1AE4       3       3       1   .rodata1    
+     STRING.getFactory.39                      1AE7       B      11       1   .rodata1    
+     STRING.Vyrobni.cislo....d...40            1AF2      15      21       1   .rodata1    
+     STRING.Datum.vyroby....s...41             1B07      14      20       1   .rodata1    
+     STRING.getStats.42                        1B1B       9       9       1   .rodata1    
+     STRING.Program.1....d...43                1B24      11      17       1   .rodata1    
+     STRING.Program.2....d...44                1B35      11      17       1   .rodata1    
+     STRING.Program.3....d...45                1B46      11      17       1   .rodata1    
+     STRING.Program.4....d...46                1B57      11      17       1   .rodata1    
+     STRING.Program.5....d...47                1B68      11      17       1   .rodata1    
+     STRING.konec.48                           1B79       6       6       1   .rodata1    
+     STRING.Odhlasen...49                      1B7F       B      11       1   .rodata1    
+     STRING.Zvoleno.50                         1B8A       8       8       1   .rodata1    
+     STRING.Program.1.51                       1B92       A      10       1   .rodata1    
+     STRING.Zvoleno.52                         1B9C       8       8       1   .rodata1    
+     STRING.Program.2.53                       1BA4       A      10       1   .rodata1    
+     STRING.Zvoleno.54                         1BAE       8       8       1   .rodata1    
+     STRING.Program.3.55                       1BB6       A      10       1   .rodata1    
+     STRING.Zvoleno.56                         1BC0       8       8       1   .rodata1    
+     STRING.Program.4.57                       1BC8       A      10       1   .rodata1    
+     STRING.Zvoleno.58                         1BD2       8       8       1   .rodata1    
+     STRING.Program.5.59                       1BDA       A      10       1   .rodata1    
+     STRING.Zvoleno.spozdeni.60                1BE4      11      17       1   .rodata1    
+     STRING.Cas.nastaven.61                    1BF5       D      13       1   .rodata1    
+     STRING.Cas.nastaven.62                    1C02       D      13       1   .rodata1    
+     STRING.Cas..63                            1C0F       5       5       1   .rodata1    
+     STRING.Diagnostika.64                     1C14       C      12       1   .rodata1    
+     STRING.Program.65                         1C20       8       8       1   .rodata1    
+     STRING.Program.nezvolen.66                1C28      11      17       1   .rodata1    
+     STRING.Program.zacne.za.67                1C39      11      17       1   .rodata1    
+     STRING.Predpirka.68                       1C4A       A      10       1   .rodata1    
+     STRING.Hlavni.prani.69                    1C54       D      13       1   .rodata1    
+     STRING.Machani.70                         1C61       8       8       1   .rodata1    
+     STRING.Zdimani.71                         1C69       8       8       1   .rodata1    
+     STRING.Ukoncovani.72                      1C71       B      11       1   .rodata1    
+     STRING.Ukonceno.73                        1C7C       9       9       1   .rodata1    
+     cas                                        100       4       4      29   .data       
+     kurzor                                     104       2       2      20   .data       
+     programy                                   106       A      10      10   .data       
+     factoryNum                                 110       2       2       1   .data       
+     factoryDate                                112       2       2       1   .data       
+     spozdeni                                   194       4       4      13   .bss        
      zacatekPrani                               198       4       4       3   .bss        
      celkovyCas                                 19C       4       4       5   .bss        
-     stav                                       1A0       2       2      19   .bss        
+     stav                                       1A0       2       2      24   .bss        
      initState                                  1A2       2       2       8   .bss        
      prog                                       1A4       2       2       7   .bss        
-     uroven                                     1A6       2       2      18   .bss        
-     pozice                                     1A8       2       2       5   .bss        
+     uroven                                     1A6       2       2      23   .bss        
+     pozice                                     1A8       2       2      10   .bss        
      stats                                      1AA       A      10      12   .bss        
-     init                                       1BA       2       2       2   .common     
+     init                                       1BA       2       2       3   .common     
      pSCI                                       1BC       2       2       3   .common     
-     pKeyboard                                  1BE       2       2       7   .common     
-     pProgram                                   1C0       2       2       4   .common     
-     pCas                                       1C2       2       2       4   .common     
-     pMenu                                      1C4       2       2       2   .common     
-     buffer                                     1C6      20      32      23   .common     
-     znak                                       1E6       1       1       1   .common     
+     pKeyboard                                  1BE       2       2       8   .common     
+     pProgram                                   1C0       2       2       5   .common     
+     pCas                                       1C2       2       2       5   .common     
+     pMenu                                      1C4       2       2       4   .common     
+     s1                                         1C6       2       2       5   .common     
+     buffer                                     1C8      20      32      31   .common     
 MODULE:                 -- main.asm.o --
 - PROCEDURES:
-     asm_main                                  4A2D       5       5       1   MyCode      
+     asm_main                                  4ED8       5       5       1   MyCode      
 - VARIABLES:
      temp_byte                                   80       1       1       1   MY_ZEROPAGE 
 MODULE:                 -- MATH08F.C.o (ansifs.lib) --
 - PROCEDURES:
-     frexpf                                    29B3      41      65       1   .text       
+     frexpf                                    2D47      41      65       1   .text       
 - VARIABLES:
 MODULE:                 -- PRINTF.C.o (ansifs.lib) --
 - PROCEDURES:
-     Ten                                       29F4      EA     234      10   .text       
-     vprintf                                   2ADE     BEB    3051      93   .text       
-     _out                                      36C9       D      13      16   .text       
-     deposit_char                              36D6      15      21       1   .text       
-     sprintf                                   36EB      3B      59       9   .text       
+     Ten                                       2D88      EA     234      10   .text       
+     vprintf                                   2E72     BEB    3051      93   .text       
+     _out                                      3A5D       D      13      16   .text       
+     deposit_char                              3A6A      15      21       1   .text       
+     sprintf                                   3A7F      3B      59       6   .text       
 - VARIABLES:
      pow10                                     18C2      28      40       4   .rodata     
      pow16                                     18EA      20      32       4   .rodata     
@@ -331,84 +357,81 @@ MODULE:                 -- PRINTF.C.o (ansifs.lib) --
      pbuf                                       1B4       6       6      15   .bss        
 MODULE:                 -- RTSHC08.C.o (ansifs.lib) --
 - PROCEDURES:
-     _PUSH_ARGS_L                              3726      20      32       2   .text       
-     _ENTER_UNARY_L                            3746      29      41       5   .text       
-     _ENTER_BINARY_L                           376F      16      22       6   .text       
-     _ENTER_BINARY_L_RC                        3785      19      25       6   .text       
-     _IDIVMOD                                  379E      69     105       3   .text       
-     _SPLITSIGN                                3807      1C      28       1   .text       
-     _LADD_k_is_k_plus_j                       3823      1F      31       1   .text       
-     _k_is_k_plus_j_l                          3842      1E      30       2   .text       
-     _k_is_k_plus_j_i                          3860      12      18       3   .text       
-     _LSUB_k_is_k_minus_j                      3872      1F      31       1   .text       
-     _LMUL_k_is_k_mul_j                        3891      81     129       1   .text       
-     _LDIVMOD                                  3912      A4     164       2   .text       
-     _NEG_L_HX                                 39B6      13      19       1   .text       
-     _LMODU_k_is_k_mod_j                       39C9       B      11       1   .text       
-     _LDIVU_k_is_k_div_j                       39D4      17      23       1   .text       
-     _LCMP_k_rel_j                             39EB      1F      31       1   .text       
-     _BDIVS                                    3A0A      17      23       1   .text       
-     _BMODS                                    3A21      17      23       2   .text       
-     _IMUL_STAR08                              3A38      27      39       9   .text       
-     _IDIVS_STAR08                             3A5F      1B      27       1   .text       
-     _IDIVU_STAR08                             3A7A       D      13       2   .text       
-     _IMODU_STAR08                             3A87      10      16       1   .text       
-     _IASR                                     3A97       C      12       1   .text       
-     _ILSR                                     3AA3       C      12       1   .text       
-     _ICMP                                     3AAF      16      22       2   .text       
-     _LINC                                     3AC5      16      22       1   .text       
-     _LNEG                                     3ADB      1C      28       1   .text       
-     _LADD                                     3AF7       6       6       3   .text       
-     _LSUB                                     3AFD       6       6       5   .text       
-     _LMUL_RC                                  3B03       6       6       6   .text       
-     _LDIVU_RC                                 3B09       6       6       7   .text       
-     _LMODU_RC                                 3B0F       6       6       6   .text       
-     _LCMP                                     3B15       6       6      14   .text       
-     _COPY                                     3B1B      30      48       6   .text       
-     _POP32                                    3B4B      1A      26      28   .text       
-     _SEXT16_32                                3B65       D      13       9   .text       
-     _Jump_Table_Addr                          3B72      16      22       2   .text       
-     _Jump_Table_Offset                        3B88      19      25       1   .text       
-     _Jump_Table_Header_Offset                 3BA1      24      36       1   .text       
-     _Search_Table_8_Addr                      3BC5      21      33       1   .text       
-     _Search_Table_8_Offset                    3BE6      25      37       1   .text       
-     _PUSH_CC                                  3C0B       F      15       1   .text       
-     _POP_CC                                   3C1A       F      15       1   .text       
-     F_CLRK                                    3C29       6       6       2   .text       
-     F_CLRK_Unary                              3C2F       6       6       1   .text       
-     F_NANK                                    3C35       6       6       2   .text       
-     F_INFK                                    3C3B       6       6       2   .text       
-     F_TLK                                     3C41      1E      30       2   .text       
-     F_XGKL                                    3C5F      48      72       1   .text       
-     _UNPACK_k_to_K                            3CA7      58      88       2   .text       
-     _UNPACK_k_to_K_Unary                      3CFF      58      88       1   .text       
-     _UNPACK_j_to_L                            3D57      58      88       2   .text       
-     _PACK_K_to_k                              3DAF      4F      79       2   .text       
-     _PACK_K_to_k_Unary                        3DFE      4F      79       1   .text       
-     F_NORMK                                   3E4D      43      67       2   .text       
-     _FADD_K_is_K_plus_L                       3E90      B2     178       1   .text       
-     _FMUL_K_is_K_times_L                      3F42      90     144       1   .text       
-     _F_LONGK                                  3FD2      5A      90       1   .text       
-     _F_FLOATK                                 402C      2E      46       1   .text       
-     _FCMP_k_rel_j                             405A      2C      44       1   .text       
-     _FADD_Common                              4086       F      15       3   .text       
-     _FSUB_Common                              4095       9       9       1   .text       
-     _FMUL_Common                              409E       F      15       2   .text       
-     _FADD                                     40AD       7       7       2   .text       
-     _FADD_RC                                  40B4       7       7       1   .text       
-     _FSUB                                     40BB       7       7       2   .text       
-     _FMUL                                     40C2       7       7       7   .text       
-     _FMUL_RC                                  40C9       7       7       6   .text       
-     _FSTRUNC                                  40D0       B      11       6   .text       
-     _FNEG                                     40DB      18      24       1   .text       
-     _FCMP_RC                                  40F3       6       6       2   .text       
-     _FUFLOAT                                  40F9       B      11       2   .text       
+     _PUSH_ARGS_L                              3ABA      20      32       2   .text       
+     _ENTER_UNARY_L                            3ADA      29      41       6   .text       
+     _ENTER_BINARY_L                           3B03      16      22       6   .text       
+     _ENTER_BINARY_L_RC                        3B19      19      25       5   .text       
+     _IDIVMOD                                  3B32      69     105       2   .text       
+     _SPLITSIGN                                3B9B      1C      28       2   .text       
+     _LADD_k_is_k_plus_j                       3BB7      1F      31       1   .text       
+     _LSUB_k_is_k_minus_j                      3BD6      1F      31       1   .text       
+     _LDIVMOD                                  3BF5      A4     164       2   .text       
+     _NEG_L_HX                                 3C99      13      19       1   .text       
+     _LMODU_k_is_k_mod_j                       3CAC       B      11       1   .text       
+     _LDIVU_k_is_k_div_j                       3CB7      17      23       1   .text       
+     _LCMP_k_rel_j                             3CCE      1F      31       1   .text       
+     _BDIVS                                    3CED      17      23       1   .text       
+     _BMODS                                    3D04      17      23       2   .text       
+     _IMUL_STAR08                              3D1B      27      39       8   .text       
+     _IDIVS_STAR08                             3D42      1B      27       2   .text       
+     _IDIVU_STAR08                             3D5D       D      13       4   .text       
+     _IMODS_STAR08                             3D6A      25      37       2   .text       
+     _IASR                                     3D8F       C      12       1   .text       
+     _ILSR                                     3D9B       C      12       1   .text       
+     _ICMP                                     3DA7      16      22       3   .text       
+     _LINC                                     3DBD      16      22       1   .text       
+     _LDEC                                     3DD3      1C      28       1   .text       
+     _LNEG                                     3DEF      1C      28       1   .text       
+     _LADD                                     3E0B       6       6       3   .text       
+     _LSUB                                     3E11       6       6       5   .text       
+     _LDIVU_RC                                 3E17       6       6       2   .text       
+     _LMODU_RC                                 3E1D       6       6       2   .text       
+     _LCMP                                     3E23       6       6      14   .text       
+     _COPY                                     3E29      30      48       6   .text       
+     _POP32                                    3E59      1A      26      31   .text       
+     _SEXT16_32                                3E73       D      13      11   .text       
+     _Jump_Table_Addr                          3E80      16      22       2   .text       
+     _Jump_Table_Offset                        3E96      19      25       1   .text       
+     _Jump_Table_Header_Offset                 3EAF      24      36       1   .text       
+     _Search_Table_8_Addr                      3ED3      21      33       1   .text       
+     _Search_Table_8_Offset                    3EF4      25      37       1   .text       
+     _PUSH_CC                                  3F19       F      15       1   .text       
+     _POP_CC                                   3F28       F      15       1   .text       
+     F_CLRK                                    3F37       6       6       2   .text       
+     F_CLRK_Unary                              3F3D       6       6       1   .text       
+     F_NANK                                    3F43       6       6       2   .text       
+     F_INFK                                    3F49       6       6       2   .text       
+     F_TLK                                     3F4F      1E      30       2   .text       
+     F_XGKL                                    3F6D      48      72       1   .text       
+     _UNPACK_k_to_K                            3FB5      58      88       2   .text       
+     _UNPACK_k_to_K_Unary                      400D      58      88       1   .text       
+     _UNPACK_j_to_L                            4065      58      88       2   .text       
+     _PACK_K_to_k                              40BD      4F      79       2   .text       
+     _PACK_K_to_k_Unary                        410C      4F      79       1   .text       
+     F_NORMK                                   415B      43      67       2   .text       
+     _FADD_K_is_K_plus_L                       419E      B2     178       1   .text       
+     _FMUL_K_is_K_times_L                      4250      90     144       1   .text       
+     _F_LONGK                                  42E0      5A      90       1   .text       
+     _F_FLOATK                                 433A      2E      46       1   .text       
+     _FCMP_k_rel_j                             4368      2C      44       1   .text       
+     _FADD_Common                              4394       F      15       3   .text       
+     _FSUB_Common                              43A3       9       9       1   .text       
+     _FMUL_Common                              43AC       F      15       2   .text       
+     _FADD                                     43BB       7       7       2   .text       
+     _FADD_RC                                  43C2       7       7       1   .text       
+     _FSUB                                     43C9       7       7       2   .text       
+     _FMUL                                     43D0       7       7       7   .text       
+     _FMUL_RC                                  43D7       7       7       6   .text       
+     _FSTRUNC                                  43DE       B      11       6   .text       
+     _FNEG                                     43E9      18      24       1   .text       
+     _FCMP_RC                                  4401       6       6       2   .text       
+     _FUFLOAT                                  4407       B      11       2   .text       
 - VARIABLES:
 MODULE:                 -- STRING.C.o (ansifs.lib) --
 - PROCEDURES:
-     strlen                                    4104      27      39       2   .text       
-     strncmp                                   412B      54      84       1   .text       
-     strstr                                    417F      78     120       9   .text       
+     strlen                                    4412      27      39       2   .text       
+     strncmp                                   4439      54      84       1   .text       
+     strstr                                    448D      78     120       9   .text       
 - VARIABLES:
 MODULE:                 -- MC9S08GB60.C.o --
 - PROCEDURES:
@@ -453,7 +476,7 @@ MODULE:                 -- MC9S08GB60.C.o --
      _SPI1BR                                     2A       1       1       0   .abs_section_2a
      _SPI1S                                      2B       1       1       0   .abs_section_2b
      _SPI1D                                      2D       1       1       0   .abs_section_2d
-     _TPM1SC                                     30       1       1      14   .abs_section_30
+     _TPM1SC                                     30       1       1      25   .abs_section_30
      _TPM1C0SC                                   35       1       1       0   .abs_section_35
      _TPM1C1SC                                   38       1       1       0   .abs_section_38
      _TPM1C2SC                                   3B       1       1       0   .abs_section_3b
@@ -471,7 +494,7 @@ MODULE:                 -- MC9S08GB60.C.o --
      _ICGS2                                      4B       1       1       0   .abs_section_4b
      _ICGTRM                                     4E       1       1       0   .abs_section_4e
      _ATD1C                                      50       1       1       1   .abs_section_50
-     _ATD1SC                                     51       1       1       6   .abs_section_51
+     _ATD1SC                                     51       1       1       8   .abs_section_51
      _ATD1PE                                     54       1       1       1   .abs_section_54
      _IIC1A                                      58       1       1       0   .abs_section_58
      _IIC1F                                      59       1       1       0   .abs_section_59
@@ -484,7 +507,7 @@ MODULE:                 -- MC9S08GB60.C.o --
      _TPM2C2SC                                   6B       1       1       0   .abs_section_6b
      _TPM2C3SC                                   6E       1       1       0   .abs_section_6e
      _TPM2C4SC                                   71       1       1       0   .abs_section_71
-     _SRS                                      1800       1       1      18   .abs_section_1800
+     _SRS                                      1800       1       1      23   .abs_section_1800
      _SBDFR                                    1801       1       1       0   .abs_section_1801
      _SOPT                                     1802       1       1       0   .abs_section_1802
      _SRTISC                                   1808       1       1       0   .abs_section_1808
@@ -511,7 +534,7 @@ MODULE:                 -- MC9S08GB60.C.o --
      _TPM1C1V                                    39       2       2       0   .abs_section_39
      _TPM1C2V                                    3C       2       2       0   .abs_section_3c
      _ICGFLT                                     4C       2       2       0   .abs_section_4c
-     _ATD1R                                      52       2       2      16   .abs_section_52
+     _ATD1R                                      52       2       2      21   .abs_section_52
      _TPM2CNT                                    61       2       2       0   .abs_section_61
      _TPM2MOD                                    63       2       2       0   .abs_section_63
      _TPM2C0V                                    66       2       2       0   .abs_section_66
@@ -529,77 +552,82 @@ MODULE:                 -- Start08.c.o --
 - VARIABLES:
      _startupData                              18B0       6       6       4   .startData  
 - LABELS:
-     __SEG_END_SSTACK                           190       0       0       1               
+     __SEG_END_SSTACK                           194       0       0       1               
 MODULE:                 -- D:\wsd\rtmon\rtmon\build\codewarrior\gb60\rtmon_hc08gb60_Data\Standard\ObjectCode\rtmon_psbs.c.o (rtmon.lib) --
 - PROCEDURES:
-     rtm_InitTimer                             41F7       1       1       1   .text       
-     rtmon_initprocstack                       41F8      48      72       3   .text       
+     rtm_InitTimer                             4505       1       1       1   .text       
+     rtmon_initprocstack                       4506      48      72       3   .text       
 - VARIABLES:
 MODULE:                 -- D:\wsd\rtmon\rtmon\build\codewarrior\gb60\rtmon_hc08gb60_Data\Standard\ObjectCode\rtmon_asm.asm.o (rtmon.lib) --
 - PROCEDURES:
-     TOF_int                                   4A32      10      16       2   MyCode      
-     rtmon_SWI                                 4A42       8       8       3   MyCode      
+     TOF_int                                   4EDD      10      16       2   MyCode      
+     rtmon_SWI                                 4EED       8       8       4   MyCode      
 - VARIABLES:
      VAR00001                                  FFEE       2       2       0   .text       
 MODULE:                 -- D:\wsd\rtmon\rtmon\build\codewarrior\gb60\rtmon_hc08gb60_Data\Standard\ObjectCode\rtmon_services.c.o (rtmon.lib) --
 - PROCEDURES:
-     rtm_init                                  4240      AB     171       1   .text       
-     rtm_create_p                              42EB      FC     252       8   .text       
-     rtm_start_p                               43E7      99     153       5   .text       
-     rtm_delay_p                               4480      79     121       2   .text       
-     rtm_ch_period_p                           44F9      2D      45       2   .text       
-     rtm_stop_p                                4526      5C      92       7   .text       
+     rtm_init                                  454E      AB     171       1   .text       
+     rtm_create_p                              45F9      FC     252       8   .text       
+     rtm_start_p                               46F5      99     153       5   .text       
+     rtm_delay_p                               478E      79     121       4   .text       
+     rtm_continue_p                            4807      3F      63       1   .text       
+     rtm_ch_period_p                           4846      2D      45       2   .text       
+     rtm_stop_p                                4873      5C      92       7   .text       
+     rtm_create_q                              48CF      B2     178       2   .text       
+     rtm_write_q                               4981      54      84       2   .text       
+     rtm_read_q                                49D5      58      88       2   .text       
 - VARIABLES:
-     STRING.dummy.1                            1BB2       6       6       1   .rodata1    
+     STRING.dummy.1                            1C85       6       6       1   .rodata1    
 MODULE:                 -- D:\wsd\rtmon\rtmon\build\codewarrior\gb60\rtmon_hc08gb60_Data\Standard\ObjectCode\rtmon.c.o (rtmon.lib) --
 - PROCEDURES:
-     rtmon_kernel                              4582      98     152       1   .text       
-     rtmon_scheduler                           461A      6C     108       1   .text       
-     rtmon_refreshqwaiting                     4686      B5     181       4   .text       
-     rtmon_dummy                               473B       E      14       1   .text       
-     rtmon_pq_findhiestpriority                4749      56      86       1   .text       
-     rtmon_push                                479F      14      20       4   .text       
+     rtmon_kernel                              4A2D      98     152       1   .text       
+     rtmon_scheduler                           4AC5      6C     108       1   .text       
+     rtmon_refreshqwaiting                     4B31      B5     181       4   .text       
+     rtmon_dummy                               4BE6       E      14       1   .text       
+     rtmon_pq_findhiestpriority                4BF4      56      86       1   .text       
+     rtmon_push                                4C4A      14      20       4   .text       
 - VARIABLES:
 MODULE:                 -- D:\wsd\rtmon\rtmon\build\codewarrior\gb60\rtmon_hc08gb60_Data\Standard\ObjectCode\rtmon_data.c.o (rtmon.lib) --
 - PROCEDURES:
 - VARIABLES:
-     rtmon_data                                 1E7      D8     216      17   .common     
-     rtmon_stackpool                            2BF     400    1024       5   .common     
-     rtmon_lastprocess                          6BF       1       1       9   .common     
-     rtmon_toberun                              6C0       2       2       2   .common     
-     rtmon_curproc                              6C2       2       2       9   .common     
-     rtmon_tobesp                               6C4       2       2       5   .common     
-     rtmon_status                               6C6       1       1      10   .common     
-     g_TickCount                                6C7       2       2       1   .common     
-     rtmon_queues                               6C9      32      50       8   .common     
-     rtmon_lastq                                6FB       1       1       5   .common     
+     rtmon_data                                 1E8      D8     216      17   .common     
+     rtmon_stackpool                            2C0     400    1024       5   .common     
+     rtmon_lastprocess                          6C0       1       1       9   .common     
+     rtmon_toberun                              6C1       2       2       2   .common     
+     rtmon_curproc                              6C3       2       2       9   .common     
+     rtmon_tobesp                               6C5       2       2       5   .common     
+     rtmon_status                               6C7       1       1      11   .common     
+     g_TickCount                                6C8       2       2       1   .common     
+     rtmon_queues                               6CA      32      50      27   .common     
+     rtmon_qpool                                6FC      20      32       3   .common     
+     rtmon_lastq                                71C       1       1      11   .common     
 MODULE:                 -- sci_gb60.asm.o --
 - PROCEDURES:
-     sci1_init                                 4A4A      1E      30       1   MyCode      
-     sc4bd                                     4A68       7       7       0   MyCode      
-     sc9bd                                     4A6F       7       7       0   MyCode      
-     sc19bd                                    4A76       7       7       0   MyCode      
-     sc38bd                                    4A7D       7       7       0   MyCode      
-     sc57bd                                    4A84       7       7       0   MyCode      
-     sc115bd                                   4A8B       5       5       0   MyCode      
-     scend                                     4A90       E      14       0   MyCode      
-     sci1_in                                   4A9E       1       1       1   MyCode      
-     si1                                       4A9F       C      12       0   MyCode      
-     sci1_out                                  4AAB       2       2       1   MyCode      
-     so1                                       4AAD       D      13       0   MyCode      
-     sci1_str_out                              4ABA       4       4       2   MyCode      
-     scs1                                      4ABE       C      12       0   MyCode      
-     scs_end                                   4ACA       4       4       0   MyCode      
+     sci1_init                                 4EF5      1E      30       0   MyCode      
+     sc4bd                                     4F13       7       7       0   MyCode      
+     sc9bd                                     4F1A       7       7       0   MyCode      
+     sc19bd                                    4F21       7       7       0   MyCode      
+     sc38bd                                    4F28       7       7       0   MyCode      
+     sc57bd                                    4F2F       7       7       0   MyCode      
+     sc115bd                                   4F36       5       5       0   MyCode      
+     scend                                     4F3B       E      14       0   MyCode      
+     sci1_in                                   4F49       1       1       1   MyCode      
+     si1                                       4F4A       C      12       0   MyCode      
+     sci1_out                                  4F56       2       2       1   MyCode      
+     so1                                       4F58       D      13       0   MyCode      
+     sci1_str_out                              4F65       4       4       5   MyCode      
+     scs1                                      4F69       C      12       0   MyCode      
+     scs_end                                   4F75       4       4       0   MyCode      
 - VARIABLES:
 MODULE:                 -- driver.c.o --
 - PROCEDURES:
-     driver_buben_smer                         47B3      45      69       6   .text       
-     driver_buben_rychlost                     47F8      1A      26       3   .text       
-     driver_pracka_vypust                      4812      25      37       6   .text       
-     driver_pracka_napust                      4837      28      40       9   .text       
-     driver_pracka_teplota                     485F      38      56       3   .text       
-     driver_pracka_hladina                     4897      21      33       6   .text       
-     driver_pracka_topeni                      48B8      1A      26       4   .text       
+     driver_buben_smer                         4C5E      45      69       6   .text       
+     driver_buben_rychlost                     4CA3      1A      26       3   .text       
+     driver_pracka_vypust                      4CBD      25      37       7   .text       
+     driver_pracka_napust                      4CE2      28      40       9   .text       
+     driver_pracka_teplota                     4D0A      38      56       4   .text       
+     driver_pracka_hladina                     4D42      21      33       6   .text       
+     driver_pracka_topeni                      4D63      1A      26       4   .text       
 - VARIABLES:
 
 *********************************************************************************************
@@ -608,22 +636,22 @@ MODULE STATISTIC
 ---------------------------------------------------------------------------------------------
   disp_gb60.asm.o                              0    347      0
   gpio.c.o                                     0    240      0
-  main.c.o                                    97   3339    540
+  main.c.o                                    98   4044    751
   main.asm.o                                   1      5      0
   MATH08F.C.o (ansifs.lib)                     0     65      0
   PRINTF.C.o (ansifs.lib)                      6   3378    212
-  RTSHC08.C.o (ansifs.lib)                     0   2526      0
+  RTSHC08.C.o (ansifs.lib)                     0   2392      0
   STRING.C.o (ansifs.lib)                      0    243      0
   MC9S08GB60.C.o                             126      0      0
   Start08.c.o                                  0    132      0
   D:\wsd\rtmon\rtmon\build\codewarrior\gb60\rtmon_hc08gb60_Data\Standard\ObjectCode\rtmon_psbs.c.o (rtmon.lib)     0     73      0
   D:\wsd\rtmon\rtmon\build\codewarrior\gb60\rtmon_hc08gb60_Data\Standard\ObjectCode\rtmon_asm.asm.o (rtmon.lib)     0     24      2
-  D:\wsd\rtmon\rtmon\build\codewarrior\gb60\rtmon_hc08gb60_Data\Standard\ObjectCode\rtmon_services.c.o (rtmon.lib)     0    834      6
+  D:\wsd\rtmon\rtmon\build\codewarrior\gb60\rtmon_hc08gb60_Data\Standard\ObjectCode\rtmon_services.c.o (rtmon.lib)     0   1247      6
   D:\wsd\rtmon\rtmon\build\codewarrior\gb60\rtmon_hc08gb60_Data\Standard\ObjectCode\rtmon.c.o (rtmon.lib)     0    561      0
-  D:\wsd\rtmon\rtmon\build\codewarrior\gb60\rtmon_hc08gb60_Data\Standard\ObjectCode\rtmon_data.c.o (rtmon.lib)  1301      0      0
+  D:\wsd\rtmon\rtmon\build\codewarrior\gb60\rtmon_hc08gb60_Data\Standard\ObjectCode\rtmon_data.c.o (rtmon.lib)  1333      0      0
   sci_gb60.asm.o                               0    132      0
   driver.c.o                                   0    287      0
-  other                                      128     20     22
+  other                                      128     20     23
 
 *********************************************************************************************
 SECTION USE IN OBJECT-ALLOCATION SECTION
@@ -632,30 +660,30 @@ SECTION: ".text"
   gpio_led_init gpio_led_on gpio_led_off gpio_button_init gpio_button_test 
   gpio_write_c gpio_mode_c gpio_read_d gpio_write_d gpio_mode_d gpio_read_e 
   gpio_hard_init main casPracky menu sci keyboard program programSequence 
-  ukonci predpirka hlavniPrani machani zdimani dokonciCinnost tocBubnem frexpf 
-  Ten vprintf _out deposit_char sprintf _PUSH_ARGS_L _ENTER_UNARY_L 
-  _ENTER_BINARY_L _ENTER_BINARY_L_RC _IDIVMOD _SPLITSIGN _LADD_k_is_k_plus_j 
-  _k_is_k_plus_j_l _k_is_k_plus_j_i _LSUB_k_is_k_minus_j _LMUL_k_is_k_mul_j 
-  _LDIVMOD _NEG_L_HX _LMODU_k_is_k_mod_j _LDIVU_k_is_k_div_j _LCMP_k_rel_j 
-  _BDIVS _BMODS _IMUL_STAR08 _IDIVS_STAR08 _IDIVU_STAR08 _IMODU_STAR08 _IASR 
-  _ILSR _ICMP _LINC _LNEG _LADD _LSUB _LMUL_RC _LDIVU_RC _LMODU_RC _LCMP _COPY 
-  _POP32 _SEXT16_32 _Jump_Table_Addr _Jump_Table_Offset 
-  _Jump_Table_Header_Offset _Search_Table_8_Addr _Search_Table_8_Offset 
-  _PUSH_CC _POP_CC F_CLRK F_CLRK_Unary F_NANK F_INFK F_TLK F_XGKL 
-  _UNPACK_k_to_K _UNPACK_k_to_K_Unary _UNPACK_j_to_L _PACK_K_to_k 
-  _PACK_K_to_k_Unary F_NORMK _FADD_K_is_K_plus_L _FMUL_K_is_K_times_L _F_LONGK 
-  _F_FLOATK _FCMP_k_rel_j _FADD_Common _FSUB_Common _FMUL_Common _FADD _FADD_RC 
-  _FSUB _FMUL _FMUL_RC _FSTRUNC _FNEG _FCMP_RC _FUFLOAT strlen strncmp strstr 
-  rtm_InitTimer rtmon_initprocstack rtm_init rtm_create_p rtm_start_p 
-  rtm_delay_p rtm_ch_period_p rtm_stop_p rtmon_kernel rtmon_scheduler 
+  ukonci predpirka hlavniPrani machani zdimani dokonciCinnost tocBubnem 
+  intToTime frexpf Ten vprintf _out deposit_char sprintf _PUSH_ARGS_L 
+  _ENTER_UNARY_L _ENTER_BINARY_L _ENTER_BINARY_L_RC _IDIVMOD _SPLITSIGN 
+  _LADD_k_is_k_plus_j _LSUB_k_is_k_minus_j _LDIVMOD _NEG_L_HX 
+  _LMODU_k_is_k_mod_j _LDIVU_k_is_k_div_j _LCMP_k_rel_j _BDIVS _BMODS 
+  _IMUL_STAR08 _IDIVS_STAR08 _IDIVU_STAR08 _IMODS_STAR08 _IASR _ILSR _ICMP 
+  _LINC _LDEC _LNEG _LADD _LSUB _LDIVU_RC _LMODU_RC _LCMP _COPY _POP32 
+  _SEXT16_32 _Jump_Table_Addr _Jump_Table_Offset _Jump_Table_Header_Offset 
+  _Search_Table_8_Addr _Search_Table_8_Offset _PUSH_CC _POP_CC F_CLRK 
+  F_CLRK_Unary F_NANK F_INFK F_TLK F_XGKL _UNPACK_k_to_K _UNPACK_k_to_K_Unary 
+  _UNPACK_j_to_L _PACK_K_to_k _PACK_K_to_k_Unary F_NORMK _FADD_K_is_K_plus_L 
+  _FMUL_K_is_K_times_L _F_LONGK _F_FLOATK _FCMP_k_rel_j _FADD_Common 
+  _FSUB_Common _FMUL_Common _FADD _FADD_RC _FSUB _FMUL _FMUL_RC _FSTRUNC _FNEG 
+  _FCMP_RC _FUFLOAT strlen strncmp strstr rtm_InitTimer rtmon_initprocstack 
+  rtm_init rtm_create_p rtm_start_p rtm_delay_p rtm_continue_p rtm_ch_period_p 
+  rtm_stop_p rtm_create_q rtm_write_q rtm_read_q rtmon_kernel rtmon_scheduler 
   rtmon_refreshqwaiting rtmon_dummy rtmon_pq_findhiestpriority rtmon_push 
   driver_buben_smer driver_buben_rychlost driver_pracka_vypust 
   driver_pracka_napust driver_pracka_teplota driver_pracka_hladina 
   driver_pracka_topeni VAR00001 
 SECTION: ".data"
-  kurzor programy factoryNum factoryDate 
+  cas kurzor programy factoryNum factoryDate 
 SECTION: ".bss"
-  cas spozdeni zacatekPrani celkovyCas stav initState prog uroven pozice stats 
+  spozdeni zacatekPrani celkovyCas stav initState prog uroven pozice stats 
   pbuf 
 SECTION: ".init"
   loadByte Init _Startup 
@@ -663,20 +691,27 @@ SECTION: ".rodata"
   pow10 pow16 pow8 fpow10 fpow_10 
 SECTION: ".rodata1"
   STRING.1.1.1970.1 STRING.Pracka.2 STRING.proc2.3 STRING.proc3.4 
-  STRING.proc5.5 STRING.proc6.6 STRING.proc7.7 STRING.Nyni.muzete.8 
-  STRING.pracku.vypnout.9 STRING.Konec.10 STRING.Zpet.11 
-  STRING.Vyber.programu.12 STRING.Odlozeny.start.13 STRING.Cas.14 
-  STRING.Diagnostika.15 STRING.Start.16 STRING.Program.1.17 STRING.Program.2.18 
-  STRING.Program.3.19 STRING.Program.4.20 STRING.Program.5.21 
-  STRING.Spozdeni..d..d.22 STRING.Zadejte.heslo...23 STRING.1234.24 
-  STRING.setTime.25 STRING.setTime.26 STRING.clean.27 STRING.getTime.28 
-  STRING..d..d...29 STRING.getActiveTime.30 STRING..d..d...31 
-  STRING.getFactory.32 STRING.V.robn....slo....d...33 STRING.getStats.34 
-  STRING.Program.1....d..Prog.35 STRING.konec.36 STRING..d..d.37 
-  STRING.Diagnostika.38 STRING..d..d.39 STRING..d..d.40 STRING.Program.41 
-  STRING.Program.zacne.za.42 STRING..d..d.43 STRING.Predpirka.44 
-  STRING.Hlavni.prani.45 STRING.Machani.46 STRING.Zdimani.47 
-  STRING.Ukoncovani.48 STRING.dummy.1 
+  STRING.proc5.5 STRING.proc6.6 STRING.proc7.7 STRING.no.8 STRING.Nyni.muzete.9 
+  STRING.pracku.vypnout.10 STRING.Konec.11 STRING.Zpet.12 
+  STRING.Vyber.programu.13 STRING.Odlozeny.start.14 STRING.Cas.15 
+  STRING.Diagnostika.16 STRING.Start.17 STRING.Program.1.18 STRING.Program.2.19 
+  STRING.Program.3.20 STRING.Program.4.21 STRING.Program.5.22 
+  STRING.Vypsani.casu.23 STRING.Nastaveni.hodin.24 STRING.Nastaveni.minut.25 
+  STRING.Cas..26 STRING.Cas..27 STRING.Spozdeni..28 STRING.Zadejte.heslo...29 
+  STRING.1234.30 STRING.Prihlasen...31 STRING.setTime.32 STRING.setTime.33 
+  STRING.clean.34 STRING.getTime.35 STRING....36 STRING.getActiveTime.37 
+  STRING....38 STRING.getFactory.39 STRING.Vyrobni.cislo....d...40 
+  STRING.Datum.vyroby....s...41 STRING.getStats.42 STRING.Program.1....d...43 
+  STRING.Program.2....d...44 STRING.Program.3....d...45 
+  STRING.Program.4....d...46 STRING.Program.5....d...47 STRING.konec.48 
+  STRING.Odhlasen...49 STRING.Zvoleno.50 STRING.Program.1.51 STRING.Zvoleno.52 
+  STRING.Program.2.53 STRING.Zvoleno.54 STRING.Program.3.55 STRING.Zvoleno.56 
+  STRING.Program.4.57 STRING.Zvoleno.58 STRING.Program.5.59 
+  STRING.Zvoleno.spozdeni.60 STRING.Cas.nastaven.61 STRING.Cas.nastaven.62 
+  STRING.Cas..63 STRING.Diagnostika.64 STRING.Program.65 
+  STRING.Program.nezvolen.66 STRING.Program.zacne.za.67 STRING.Predpirka.68 
+  STRING.Hlavni.prani.69 STRING.Machani.70 STRING.Zdimani.71 
+  STRING.Ukoncovani.72 STRING.Ukonceno.73 STRING.dummy.1 
 SECTION: "MY_ZEROPAGE"
   temp_byte 
 SECTION: "MyCode"
@@ -685,9 +720,9 @@ SECTION: "MyCode"
   sc38bd sc57bd sc115bd scend sci1_in si1 sci1_out so1 sci1_str_out scs1 
   scs_end 
 SECTION: ".common"
-  init pSCI pKeyboard pProgram pCas pMenu buffer znak rtmon_data 
-  rtmon_stackpool rtmon_lastprocess rtmon_toberun rtmon_curproc rtmon_tobesp 
-  rtmon_status g_TickCount rtmon_queues rtmon_lastq 
+  init pSCI pKeyboard pProgram pCas pMenu s1 buffer rtmon_data rtmon_stackpool 
+  rtmon_lastprocess rtmon_toberun rtmon_curproc rtmon_tobesp rtmon_status 
+  g_TickCount rtmon_queues rtmon_qpool rtmon_lastq 
 SECTION: ".abs_section_0"
   _PTAD 
 SECTION: ".abs_section_1"
@@ -951,7 +986,7 @@ OBJECT LIST SORTED BY ADDRESS
      _SPI1BR                                     2A       1       1       0   .abs_section_2a
      _SPI1S                                      2B       1       1       0   .abs_section_2b
      _SPI1D                                      2D       1       1       0   .abs_section_2d
-     _TPM1SC                                     30       1       1      14   .abs_section_30
+     _TPM1SC                                     30       1       1      25   .abs_section_30
      _TPM1CNT                                    31       2       2       1   .abs_section_31
      _TPM1MOD                                    33       2       2       1   .abs_section_33
      _TPM1C0SC                                   35       1       1       0   .abs_section_35
@@ -975,8 +1010,8 @@ OBJECT LIST SORTED BY ADDRESS
      _ICGFLT                                     4C       2       2       0   .abs_section_4c
      _ICGTRM                                     4E       1       1       0   .abs_section_4e
      _ATD1C                                      50       1       1       1   .abs_section_50
-     _ATD1SC                                     51       1       1       6   .abs_section_51
-     _ATD1R                                      52       2       2      16   .abs_section_52
+     _ATD1SC                                     51       1       1       8   .abs_section_51
+     _ATD1R                                      52       2       2      21   .abs_section_52
      _ATD1PE                                     54       1       1       1   .abs_section_54
      _IIC1A                                      58       1       1       0   .abs_section_58
      _IIC1F                                      59       1       1       0   .abs_section_59
@@ -997,40 +1032,41 @@ OBJECT LIST SORTED BY ADDRESS
      _TPM2C4SC                                   71       1       1       0   .abs_section_71
      _TPM2C4V                                    72       2       2       0   .abs_section_72
      temp_byte                                   80       1       1       1   MY_ZEROPAGE 
-     kurzor                                     100       2       2      24   .data       
-     programy                                   102       A      10      10   .data       
-     factoryNum                                 10C       2       2       1   .data       
-     factoryDate                                10E       2       2       1   .data       
-     cas                                        190       4       4      31   .bss        
-     spozdeni                                   194       4       4       7   .bss        
+     cas                                        100       4       4      29   .data       
+     kurzor                                     104       2       2      20   .data       
+     programy                                   106       A      10      10   .data       
+     factoryNum                                 110       2       2       1   .data       
+     factoryDate                                112       2       2       1   .data       
+     spozdeni                                   194       4       4      13   .bss        
      zacatekPrani                               198       4       4       3   .bss        
      celkovyCas                                 19C       4       4       5   .bss        
-     stav                                       1A0       2       2      19   .bss        
+     stav                                       1A0       2       2      24   .bss        
      initState                                  1A2       2       2       8   .bss        
      prog                                       1A4       2       2       7   .bss        
-     uroven                                     1A6       2       2      18   .bss        
-     pozice                                     1A8       2       2       5   .bss        
+     uroven                                     1A6       2       2      23   .bss        
+     pozice                                     1A8       2       2      10   .bss        
      stats                                      1AA       A      10      12   .bss        
      pbuf                                       1B4       6       6      15   .bss        
-     init                                       1BA       2       2       2   .common     
+     init                                       1BA       2       2       3   .common     
      pSCI                                       1BC       2       2       3   .common     
-     pKeyboard                                  1BE       2       2       7   .common     
-     pProgram                                   1C0       2       2       4   .common     
-     pCas                                       1C2       2       2       4   .common     
-     pMenu                                      1C4       2       2       2   .common     
-     buffer                                     1C6      20      32      23   .common     
-     znak                                       1E6       1       1       1   .common     
-     rtmon_data                                 1E7      D8     216      17   .common     
-     rtmon_stackpool                            2BF     400    1024       5   .common     
-     rtmon_lastprocess                          6BF       1       1       9   .common     
-     rtmon_toberun                              6C0       2       2       2   .common     
-     rtmon_curproc                              6C2       2       2       9   .common     
-     rtmon_tobesp                               6C4       2       2       5   .common     
-     rtmon_status                               6C6       1       1      10   .common     
-     g_TickCount                                6C7       2       2       1   .common     
-     rtmon_queues                               6C9      32      50       8   .common     
-     rtmon_lastq                                6FB       1       1       5   .common     
-     _SRS                                      1800       1       1      18   .abs_section_1800
+     pKeyboard                                  1BE       2       2       8   .common     
+     pProgram                                   1C0       2       2       5   .common     
+     pCas                                       1C2       2       2       5   .common     
+     pMenu                                      1C4       2       2       4   .common     
+     s1                                         1C6       2       2       5   .common     
+     buffer                                     1C8      20      32      31   .common     
+     rtmon_data                                 1E8      D8     216      17   .common     
+     rtmon_stackpool                            2C0     400    1024       5   .common     
+     rtmon_lastprocess                          6C0       1       1       9   .common     
+     rtmon_toberun                              6C1       2       2       2   .common     
+     rtmon_curproc                              6C3       2       2       9   .common     
+     rtmon_tobesp                               6C5       2       2       5   .common     
+     rtmon_status                               6C7       1       1      11   .common     
+     g_TickCount                                6C8       2       2       1   .common     
+     rtmon_queues                               6CA      32      50      27   .common     
+     rtmon_qpool                                6FC      20      32       3   .common     
+     rtmon_lastq                                71C       1       1      11   .common     
+     _SRS                                      1800       1       1      23   .abs_section_1800
      _SBDFR                                    1801       1       1       0   .abs_section_1801
      _SOPT                                     1802       1       1       0   .abs_section_1802
      _SDID                                     1806       2       2       0   .abs_section_1806
@@ -1066,210 +1102,237 @@ OBJECT LIST SORTED BY ADDRESS
      STRING.proc5.5                            19B2       6       6       1   .rodata1    
      STRING.proc6.6                            19B8       6       6       1   .rodata1    
      STRING.proc7.7                            19BE       6       6       1   .rodata1    
-     STRING.Nyni.muzete.8                      19C4       C      12       1   .rodata1    
-     STRING.pracku.vypnout.9                   19D0       F      15       1   .rodata1    
-     STRING.Konec.10                           19DF       6       6       1   .rodata1    
-     STRING.Zpet.11                            19E5       5       5       1   .rodata1    
-     STRING.Vyber.programu.12                  19EA       F      15       1   .rodata1    
-     STRING.Odlozeny.start.13                  19F9       F      15       1   .rodata1    
-     STRING.Cas.14                             1A08       4       4       1   .rodata1    
-     STRING.Diagnostika.15                     1A0C       C      12       1   .rodata1    
-     STRING.Start.16                           1A18       6       6       1   .rodata1    
-     STRING.Program.1.17                       1A1E       A      10       1   .rodata1    
-     STRING.Program.2.18                       1A28       A      10       1   .rodata1    
-     STRING.Program.3.19                       1A32       A      10       1   .rodata1    
-     STRING.Program.4.20                       1A3C       A      10       1   .rodata1    
-     STRING.Program.5.21                       1A46       A      10       1   .rodata1    
-     STRING.Spozdeni..d..d.22                  1A50       F      15       1   .rodata1    
-     STRING.Zadejte.heslo...23                 1A5F      10      16       1   .rodata1    
-     STRING.1234.24                            1A6F       5       5       1   .rodata1    
-     STRING.setTime.25                         1A74       8       8       1   .rodata1    
-     STRING.setTime.26                         1A7C       8       8       1   .rodata1    
-     STRING.clean.27                           1A84       6       6       1   .rodata1    
-     STRING.getTime.28                         1A8A       8       8       1   .rodata1    
-     STRING..d..d...29                         1A92       8       8       1   .rodata1    
-     STRING.getActiveTime.30                   1A9A       E      14       1   .rodata1    
-     STRING..d..d...31                         1AA8       8       8       1   .rodata1    
-     STRING.getFactory.32                      1AB0       B      11       1   .rodata1    
-     STRING.V.robn....slo....d...33            1ABB      28      40       1   .rodata1    
-     STRING.getStats.34                        1AE3       9       9       1   .rodata1    
-     STRING.Program.1....d..Prog.35            1AEC      51      81       1   .rodata1    
-     STRING.konec.36                           1B3D       6       6       1   .rodata1    
-     STRING..d..d.37                           1B43       6       6       1   .rodata1    
-     STRING.Diagnostika.38                     1B49       C      12       1   .rodata1    
-     STRING..d..d.39                           1B55       6       6       1   .rodata1    
-     STRING..d..d.40                           1B5B       6       6       1   .rodata1    
-     STRING.Program.41                         1B61       8       8       1   .rodata1    
-     STRING.Program.zacne.za.42                1B69      11      17       1   .rodata1    
-     STRING..d..d.43                           1B7A       6       6       1   .rodata1    
-     STRING.Predpirka.44                       1B80       A      10       1   .rodata1    
-     STRING.Hlavni.prani.45                    1B8A       D      13       1   .rodata1    
-     STRING.Machani.46                         1B97       8       8       1   .rodata1    
-     STRING.Zdimani.47                         1B9F       8       8       1   .rodata1    
-     STRING.Ukoncovani.48                      1BA7       B      11       1   .rodata1    
-     STRING.dummy.1                            1BB2       6       6       1   .rodata1    
-     gpio_led_init                             1BB8      12      18       1   .text       
-     gpio_led_on                               1BCA       7       7       1   .text       
-     gpio_led_off                              1BD1       C      12       3   .text       
-     gpio_button_init                          1BDD      12      18       1   .text       
-     gpio_button_test                          1BEF      12      18       1   .text       
-     gpio_write_c                              1C01      15      21       8   .text       
-     gpio_mode_c                               1C16      27      39       1   .text       
-     gpio_read_d                               1C3D       C      12       2   .text       
-     gpio_write_d                              1C49      15      21       2   .text       
-     gpio_mode_d                               1C5E      27      39       1   .text       
-     gpio_read_e                               1C85       C      12       2   .text       
-     gpio_hard_init                            1C91      17      23       1   .text       
-     main                                      1CA8     11F     287       1   .text       
-     casPracky                                 1DC7       F      15       1   .text       
-     menu                                      1DD6     1BE     446      12   .text       
-     sci                                       1F94     28E     654       8   .text       
-     keyboard                                  2222     3D0     976      44   .text       
-     program                                   25F2      1E      30       1   .text       
-     programSequence                           2610     163     355       4   .text       
-     ukonci                                    2773      55      85       1   .text       
-     predpirka                                 27C8      1C      28       1   .text       
-     hlavniPrani                               27E4      A0     160       1   .text       
-     machani                                   2884      1C      28       1   .text       
-     zdimani                                   28A0      42      66       1   .text       
-     dokonciCinnost                            28E2      39      57       3   .text       
-     tocBubnem                                 291B      98     152       3   .text       
-     frexpf                                    29B3      41      65       1   .text       
-     Ten                                       29F4      EA     234      10   .text       
-     vprintf                                   2ADE     BEB    3051      93   .text       
-     _out                                      36C9       D      13      16   .text       
-     deposit_char                              36D6      15      21       1   .text       
-     sprintf                                   36EB      3B      59       9   .text       
-     _PUSH_ARGS_L                              3726      20      32       2   .text       
-     _ENTER_UNARY_L                            3746      29      41       5   .text       
-     _ENTER_BINARY_L                           376F      16      22       6   .text       
-     _ENTER_BINARY_L_RC                        3785      19      25       6   .text       
-     _IDIVMOD                                  379E      69     105       3   .text       
-     _SPLITSIGN                                3807      1C      28       1   .text       
-     _LADD_k_is_k_plus_j                       3823      1F      31       1   .text       
-     _k_is_k_plus_j_l                          3842      1E      30       2   .text       
-     _k_is_k_plus_j_i                          3860      12      18       3   .text       
-     _LSUB_k_is_k_minus_j                      3872      1F      31       1   .text       
-     _LMUL_k_is_k_mul_j                        3891      81     129       1   .text       
-     _LDIVMOD                                  3912      A4     164       2   .text       
-     _NEG_L_HX                                 39B6      13      19       1   .text       
-     _LMODU_k_is_k_mod_j                       39C9       B      11       1   .text       
-     _LDIVU_k_is_k_div_j                       39D4      17      23       1   .text       
-     _LCMP_k_rel_j                             39EB      1F      31       1   .text       
-     _BDIVS                                    3A0A      17      23       1   .text       
-     _BMODS                                    3A21      17      23       2   .text       
-     _IMUL_STAR08                              3A38      27      39       9   .text       
-     _IDIVS_STAR08                             3A5F      1B      27       1   .text       
-     _IDIVU_STAR08                             3A7A       D      13       2   .text       
-     _IMODU_STAR08                             3A87      10      16       1   .text       
-     _IASR                                     3A97       C      12       1   .text       
-     _ILSR                                     3AA3       C      12       1   .text       
-     _ICMP                                     3AAF      16      22       2   .text       
-     _LINC                                     3AC5      16      22       1   .text       
-     _LNEG                                     3ADB      1C      28       1   .text       
-     _LADD                                     3AF7       6       6       3   .text       
-     _LSUB                                     3AFD       6       6       5   .text       
-     _LMUL_RC                                  3B03       6       6       6   .text       
-     _LDIVU_RC                                 3B09       6       6       7   .text       
-     _LMODU_RC                                 3B0F       6       6       6   .text       
-     _LCMP                                     3B15       6       6      14   .text       
-     _COPY                                     3B1B      30      48       6   .text       
-     _POP32                                    3B4B      1A      26      28   .text       
-     _SEXT16_32                                3B65       D      13       9   .text       
-     _Jump_Table_Addr                          3B72      16      22       2   .text       
-     _Jump_Table_Offset                        3B88      19      25       1   .text       
-     _Jump_Table_Header_Offset                 3BA1      24      36       1   .text       
-     _Search_Table_8_Addr                      3BC5      21      33       1   .text       
-     _Search_Table_8_Offset                    3BE6      25      37       1   .text       
-     _PUSH_CC                                  3C0B       F      15       1   .text       
-     _POP_CC                                   3C1A       F      15       1   .text       
-     F_CLRK                                    3C29       6       6       2   .text       
-     F_CLRK_Unary                              3C2F       6       6       1   .text       
-     F_NANK                                    3C35       6       6       2   .text       
-     F_INFK                                    3C3B       6       6       2   .text       
-     F_TLK                                     3C41      1E      30       2   .text       
-     F_XGKL                                    3C5F      48      72       1   .text       
-     _UNPACK_k_to_K                            3CA7      58      88       2   .text       
-     _UNPACK_k_to_K_Unary                      3CFF      58      88       1   .text       
-     _UNPACK_j_to_L                            3D57      58      88       2   .text       
-     _PACK_K_to_k                              3DAF      4F      79       2   .text       
-     _PACK_K_to_k_Unary                        3DFE      4F      79       1   .text       
-     F_NORMK                                   3E4D      43      67       2   .text       
-     _FADD_K_is_K_plus_L                       3E90      B2     178       1   .text       
-     _FMUL_K_is_K_times_L                      3F42      90     144       1   .text       
-     _F_LONGK                                  3FD2      5A      90       1   .text       
-     _F_FLOATK                                 402C      2E      46       1   .text       
-     _FCMP_k_rel_j                             405A      2C      44       1   .text       
-     _FADD_Common                              4086       F      15       3   .text       
-     _FSUB_Common                              4095       9       9       1   .text       
-     _FMUL_Common                              409E       F      15       2   .text       
-     _FADD                                     40AD       7       7       2   .text       
-     _FADD_RC                                  40B4       7       7       1   .text       
-     _FSUB                                     40BB       7       7       2   .text       
-     _FMUL                                     40C2       7       7       7   .text       
-     _FMUL_RC                                  40C9       7       7       6   .text       
-     _FSTRUNC                                  40D0       B      11       6   .text       
-     _FNEG                                     40DB      18      24       1   .text       
-     _FCMP_RC                                  40F3       6       6       2   .text       
-     _FUFLOAT                                  40F9       B      11       2   .text       
-     strlen                                    4104      27      39       2   .text       
-     strncmp                                   412B      54      84       1   .text       
-     strstr                                    417F      78     120       9   .text       
-     rtm_InitTimer                             41F7       1       1       1   .text       
-     rtmon_initprocstack                       41F8      48      72       3   .text       
-     rtm_init                                  4240      AB     171       1   .text       
-     rtm_create_p                              42EB      FC     252       8   .text       
-     rtm_start_p                               43E7      99     153       5   .text       
-     rtm_delay_p                               4480      79     121       2   .text       
-     rtm_ch_period_p                           44F9      2D      45       2   .text       
-     rtm_stop_p                                4526      5C      92       7   .text       
-     rtmon_kernel                              4582      98     152       1   .text       
-     rtmon_scheduler                           461A      6C     108       1   .text       
-     rtmon_refreshqwaiting                     4686      B5     181       4   .text       
-     rtmon_dummy                               473B       E      14       1   .text       
-     rtmon_pq_findhiestpriority                4749      56      86       1   .text       
-     rtmon_push                                479F      14      20       4   .text       
-     driver_buben_smer                         47B3      45      69       6   .text       
-     driver_buben_rychlost                     47F8      1A      26       3   .text       
-     driver_pracka_vypust                      4812      25      37       6   .text       
-     driver_pracka_napust                      4837      28      40       9   .text       
-     driver_pracka_teplota                     485F      38      56       3   .text       
-     driver_pracka_hladina                     4897      21      33       6   .text       
-     driver_pracka_topeni                      48B8      1A      26       4   .text       
-     dinit                                     48D2      72     114       1   MyCode      
-     douta                                     4944       5       5       2   MyCode      
-     dtext                                     4949       3       3      20   MyCode      
-     dt1                                       494C       C      12       0   MyCode      
-     dtend                                     4958       4       4       0   MyCode      
-     dcls                                      495C      13      19      20   MyCode      
-     setcursor                                 496F       B      11       4   MyCode      
-     sc1                                       497A       2       2       0   MyCode      
-     sc2                                       497C       9       9       0   MyCode      
-     wr_cmd                                    4985      31      49       8   MyCode      
-     wr_data                                   49B6      31      49       1   MyCode      
-     w5ms                                      49E7       6       6       4   MyCode      
-     w11                                       49ED       D      13       0   MyCode      
-     w500ns                                    49FA       5       5      18   MyCode      
-     waitbf                                    49FF       3       3       2   MyCode      
-     wbf1                                      4A02      2B      43       0   MyCode      
-     asm_main                                  4A2D       5       5       1   MyCode      
-     TOF_int                                   4A32      10      16       2   MyCode      
-     rtmon_SWI                                 4A42       8       8       3   MyCode      
-     sci1_init                                 4A4A      1E      30       1   MyCode      
-     sc4bd                                     4A68       7       7       0   MyCode      
-     sc9bd                                     4A6F       7       7       0   MyCode      
-     sc19bd                                    4A76       7       7       0   MyCode      
-     sc38bd                                    4A7D       7       7       0   MyCode      
-     sc57bd                                    4A84       7       7       0   MyCode      
-     sc115bd                                   4A8B       5       5       0   MyCode      
-     scend                                     4A90       E      14       0   MyCode      
-     sci1_in                                   4A9E       1       1       1   MyCode      
-     si1                                       4A9F       C      12       0   MyCode      
-     sci1_out                                  4AAB       2       2       1   MyCode      
-     so1                                       4AAD       D      13       0   MyCode      
-     sci1_str_out                              4ABA       4       4       2   MyCode      
-     scs1                                      4ABE       C      12       0   MyCode      
-     scs_end                                   4ACA       4       4       0   MyCode      
+     STRING.no.8                               19C4       3       3       1   .rodata1    
+     STRING.Nyni.muzete.9                      19C7       C      12       1   .rodata1    
+     STRING.pracku.vypnout.10                  19D3       F      15       1   .rodata1    
+     STRING.Konec.11                           19E2       6       6       1   .rodata1    
+     STRING.Zpet.12                            19E8       5       5       1   .rodata1    
+     STRING.Vyber.programu.13                  19ED       F      15       1   .rodata1    
+     STRING.Odlozeny.start.14                  19FC       F      15       1   .rodata1    
+     STRING.Cas.15                             1A0B       4       4       1   .rodata1    
+     STRING.Diagnostika.16                     1A0F       C      12       1   .rodata1    
+     STRING.Start.17                           1A1B       6       6       1   .rodata1    
+     STRING.Program.1.18                       1A21       A      10       1   .rodata1    
+     STRING.Program.2.19                       1A2B       A      10       1   .rodata1    
+     STRING.Program.3.20                       1A35       A      10       1   .rodata1    
+     STRING.Program.4.21                       1A3F       A      10       1   .rodata1    
+     STRING.Program.5.22                       1A49       A      10       1   .rodata1    
+     STRING.Vypsani.casu.23                    1A53       D      13       1   .rodata1    
+     STRING.Nastaveni.hodin.24                 1A60      10      16       1   .rodata1    
+     STRING.Nastaveni.minut.25                 1A70      10      16       1   .rodata1    
+     STRING.Cas..26                            1A80       5       5       1   .rodata1    
+     STRING.Cas..27                            1A85       5       5       1   .rodata1    
+     STRING.Spozdeni..28                       1A8A       A      10       1   .rodata1    
+     STRING.Zadejte.heslo...29                 1A94      10      16       1   .rodata1    
+     STRING.1234.30                            1AA4       5       5       1   .rodata1    
+     STRING.Prihlasen...31                     1AA9       C      12       1   .rodata1    
+     STRING.setTime.32                         1AB5       8       8       1   .rodata1    
+     STRING.setTime.33                         1ABD       8       8       1   .rodata1    
+     STRING.clean.34                           1AC5       6       6       1   .rodata1    
+     STRING.getTime.35                         1ACB       8       8       1   .rodata1    
+     STRING....36                              1AD3       3       3       1   .rodata1    
+     STRING.getActiveTime.37                   1AD6       E      14       1   .rodata1    
+     STRING....38                              1AE4       3       3       1   .rodata1    
+     STRING.getFactory.39                      1AE7       B      11       1   .rodata1    
+     STRING.Vyrobni.cislo....d...40            1AF2      15      21       1   .rodata1    
+     STRING.Datum.vyroby....s...41             1B07      14      20       1   .rodata1    
+     STRING.getStats.42                        1B1B       9       9       1   .rodata1    
+     STRING.Program.1....d...43                1B24      11      17       1   .rodata1    
+     STRING.Program.2....d...44                1B35      11      17       1   .rodata1    
+     STRING.Program.3....d...45                1B46      11      17       1   .rodata1    
+     STRING.Program.4....d...46                1B57      11      17       1   .rodata1    
+     STRING.Program.5....d...47                1B68      11      17       1   .rodata1    
+     STRING.konec.48                           1B79       6       6       1   .rodata1    
+     STRING.Odhlasen...49                      1B7F       B      11       1   .rodata1    
+     STRING.Zvoleno.50                         1B8A       8       8       1   .rodata1    
+     STRING.Program.1.51                       1B92       A      10       1   .rodata1    
+     STRING.Zvoleno.52                         1B9C       8       8       1   .rodata1    
+     STRING.Program.2.53                       1BA4       A      10       1   .rodata1    
+     STRING.Zvoleno.54                         1BAE       8       8       1   .rodata1    
+     STRING.Program.3.55                       1BB6       A      10       1   .rodata1    
+     STRING.Zvoleno.56                         1BC0       8       8       1   .rodata1    
+     STRING.Program.4.57                       1BC8       A      10       1   .rodata1    
+     STRING.Zvoleno.58                         1BD2       8       8       1   .rodata1    
+     STRING.Program.5.59                       1BDA       A      10       1   .rodata1    
+     STRING.Zvoleno.spozdeni.60                1BE4      11      17       1   .rodata1    
+     STRING.Cas.nastaven.61                    1BF5       D      13       1   .rodata1    
+     STRING.Cas.nastaven.62                    1C02       D      13       1   .rodata1    
+     STRING.Cas..63                            1C0F       5       5       1   .rodata1    
+     STRING.Diagnostika.64                     1C14       C      12       1   .rodata1    
+     STRING.Program.65                         1C20       8       8       1   .rodata1    
+     STRING.Program.nezvolen.66                1C28      11      17       1   .rodata1    
+     STRING.Program.zacne.za.67                1C39      11      17       1   .rodata1    
+     STRING.Predpirka.68                       1C4A       A      10       1   .rodata1    
+     STRING.Hlavni.prani.69                    1C54       D      13       1   .rodata1    
+     STRING.Machani.70                         1C61       8       8       1   .rodata1    
+     STRING.Zdimani.71                         1C69       8       8       1   .rodata1    
+     STRING.Ukoncovani.72                      1C71       B      11       1   .rodata1    
+     STRING.Ukonceno.73                        1C7C       9       9       1   .rodata1    
+     STRING.dummy.1                            1C85       6       6       1   .rodata1    
+     gpio_led_init                             1C8B      12      18       1   .text       
+     gpio_led_on                               1C9D       7       7       1   .text       
+     gpio_led_off                              1CA4       C      12       3   .text       
+     gpio_button_init                          1CB0      12      18       1   .text       
+     gpio_button_test                          1CC2      12      18       3   .text       
+     gpio_write_c                              1CD4      15      21       8   .text       
+     gpio_mode_c                               1CE9      27      39       1   .text       
+     gpio_read_d                               1D10       C      12       2   .text       
+     gpio_write_d                              1D1C      15      21       2   .text       
+     gpio_mode_d                               1D31      27      39       1   .text       
+     gpio_read_e                               1D58       C      12       2   .text       
+     gpio_hard_init                            1D64      17      23       1   .text       
+     main                                      1D7B     12F     303       1   .text       
+     casPracky                                 1EAA       F      15       1   .text       
+     menu                                      1EB9     2B7     695      32   .text       
+     sci                                       2170     2C2     706      11   .text       
+     keyboard                                  2432     455    1109      68   .text       
+     program                                   2887      2E      46       1   .text       
+     programSequence                           28B5     157     343       4   .text       
+     ukonci                                    2A0C      5F      95       1   .text       
+     predpirka                                 2A6B      29      41       1   .text       
+     hlavniPrani                               2A94      AB     171       1   .text       
+     machani                                   2B3F      29      41       1   .text       
+     zdimani                                   2B68      4A      74       1   .text       
+     dokonciCinnost                            2BB2      56      86       3   .text       
+     tocBubnem                                 2C08      A0     160       3   .text       
+     intToTime                                 2CA8      9F     159       8   .text       
+     frexpf                                    2D47      41      65       1   .text       
+     Ten                                       2D88      EA     234      10   .text       
+     vprintf                                   2E72     BEB    3051      93   .text       
+     _out                                      3A5D       D      13      16   .text       
+     deposit_char                              3A6A      15      21       1   .text       
+     sprintf                                   3A7F      3B      59       6   .text       
+     _PUSH_ARGS_L                              3ABA      20      32       2   .text       
+     _ENTER_UNARY_L                            3ADA      29      41       6   .text       
+     _ENTER_BINARY_L                           3B03      16      22       6   .text       
+     _ENTER_BINARY_L_RC                        3B19      19      25       5   .text       
+     _IDIVMOD                                  3B32      69     105       2   .text       
+     _SPLITSIGN                                3B9B      1C      28       2   .text       
+     _LADD_k_is_k_plus_j                       3BB7      1F      31       1   .text       
+     _LSUB_k_is_k_minus_j                      3BD6      1F      31       1   .text       
+     _LDIVMOD                                  3BF5      A4     164       2   .text       
+     _NEG_L_HX                                 3C99      13      19       1   .text       
+     _LMODU_k_is_k_mod_j                       3CAC       B      11       1   .text       
+     _LDIVU_k_is_k_div_j                       3CB7      17      23       1   .text       
+     _LCMP_k_rel_j                             3CCE      1F      31       1   .text       
+     _BDIVS                                    3CED      17      23       1   .text       
+     _BMODS                                    3D04      17      23       2   .text       
+     _IMUL_STAR08                              3D1B      27      39       8   .text       
+     _IDIVS_STAR08                             3D42      1B      27       2   .text       
+     _IDIVU_STAR08                             3D5D       D      13       4   .text       
+     _IMODS_STAR08                             3D6A      25      37       2   .text       
+     _IASR                                     3D8F       C      12       1   .text       
+     _ILSR                                     3D9B       C      12       1   .text       
+     _ICMP                                     3DA7      16      22       3   .text       
+     _LINC                                     3DBD      16      22       1   .text       
+     _LDEC                                     3DD3      1C      28       1   .text       
+     _LNEG                                     3DEF      1C      28       1   .text       
+     _LADD                                     3E0B       6       6       3   .text       
+     _LSUB                                     3E11       6       6       5   .text       
+     _LDIVU_RC                                 3E17       6       6       2   .text       
+     _LMODU_RC                                 3E1D       6       6       2   .text       
+     _LCMP                                     3E23       6       6      14   .text       
+     _COPY                                     3E29      30      48       6   .text       
+     _POP32                                    3E59      1A      26      31   .text       
+     _SEXT16_32                                3E73       D      13      11   .text       
+     _Jump_Table_Addr                          3E80      16      22       2   .text       
+     _Jump_Table_Offset                        3E96      19      25       1   .text       
+     _Jump_Table_Header_Offset                 3EAF      24      36       1   .text       
+     _Search_Table_8_Addr                      3ED3      21      33       1   .text       
+     _Search_Table_8_Offset                    3EF4      25      37       1   .text       
+     _PUSH_CC                                  3F19       F      15       1   .text       
+     _POP_CC                                   3F28       F      15       1   .text       
+     F_CLRK                                    3F37       6       6       2   .text       
+     F_CLRK_Unary                              3F3D       6       6       1   .text       
+     F_NANK                                    3F43       6       6       2   .text       
+     F_INFK                                    3F49       6       6       2   .text       
+     F_TLK                                     3F4F      1E      30       2   .text       
+     F_XGKL                                    3F6D      48      72       1   .text       
+     _UNPACK_k_to_K                            3FB5      58      88       2   .text       
+     _UNPACK_k_to_K_Unary                      400D      58      88       1   .text       
+     _UNPACK_j_to_L                            4065      58      88       2   .text       
+     _PACK_K_to_k                              40BD      4F      79       2   .text       
+     _PACK_K_to_k_Unary                        410C      4F      79       1   .text       
+     F_NORMK                                   415B      43      67       2   .text       
+     _FADD_K_is_K_plus_L                       419E      B2     178       1   .text       
+     _FMUL_K_is_K_times_L                      4250      90     144       1   .text       
+     _F_LONGK                                  42E0      5A      90       1   .text       
+     _F_FLOATK                                 433A      2E      46       1   .text       
+     _FCMP_k_rel_j                             4368      2C      44       1   .text       
+     _FADD_Common                              4394       F      15       3   .text       
+     _FSUB_Common                              43A3       9       9       1   .text       
+     _FMUL_Common                              43AC       F      15       2   .text       
+     _FADD                                     43BB       7       7       2   .text       
+     _FADD_RC                                  43C2       7       7       1   .text       
+     _FSUB                                     43C9       7       7       2   .text       
+     _FMUL                                     43D0       7       7       7   .text       
+     _FMUL_RC                                  43D7       7       7       6   .text       
+     _FSTRUNC                                  43DE       B      11       6   .text       
+     _FNEG                                     43E9      18      24       1   .text       
+     _FCMP_RC                                  4401       6       6       2   .text       
+     _FUFLOAT                                  4407       B      11       2   .text       
+     strlen                                    4412      27      39       2   .text       
+     strncmp                                   4439      54      84       1   .text       
+     strstr                                    448D      78     120       9   .text       
+     rtm_InitTimer                             4505       1       1       1   .text       
+     rtmon_initprocstack                       4506      48      72       3   .text       
+     rtm_init                                  454E      AB     171       1   .text       
+     rtm_create_p                              45F9      FC     252       8   .text       
+     rtm_start_p                               46F5      99     153       5   .text       
+     rtm_delay_p                               478E      79     121       4   .text       
+     rtm_continue_p                            4807      3F      63       1   .text       
+     rtm_ch_period_p                           4846      2D      45       2   .text       
+     rtm_stop_p                                4873      5C      92       7   .text       
+     rtm_create_q                              48CF      B2     178       2   .text       
+     rtm_write_q                               4981      54      84       2   .text       
+     rtm_read_q                                49D5      58      88       2   .text       
+     rtmon_kernel                              4A2D      98     152       1   .text       
+     rtmon_scheduler                           4AC5      6C     108       1   .text       
+     rtmon_refreshqwaiting                     4B31      B5     181       4   .text       
+     rtmon_dummy                               4BE6       E      14       1   .text       
+     rtmon_pq_findhiestpriority                4BF4      56      86       1   .text       
+     rtmon_push                                4C4A      14      20       4   .text       
+     driver_buben_smer                         4C5E      45      69       6   .text       
+     driver_buben_rychlost                     4CA3      1A      26       3   .text       
+     driver_pracka_vypust                      4CBD      25      37       7   .text       
+     driver_pracka_napust                      4CE2      28      40       9   .text       
+     driver_pracka_teplota                     4D0A      38      56       4   .text       
+     driver_pracka_hladina                     4D42      21      33       6   .text       
+     driver_pracka_topeni                      4D63      1A      26       4   .text       
+     dinit                                     4D7D      72     114       1   MyCode      
+     douta                                     4DEF       5       5       1   MyCode      
+     dtext                                     4DF4       3       3      28   MyCode      
+     dt1                                       4DF7       C      12       0   MyCode      
+     dtend                                     4E03       4       4       0   MyCode      
+     dcls                                      4E07      13      19      30   MyCode      
+     setcursor                                 4E1A       B      11       5   MyCode      
+     sc1                                       4E25       2       2       0   MyCode      
+     sc2                                       4E27       9       9       0   MyCode      
+     wr_cmd                                    4E30      31      49       8   MyCode      
+     wr_data                                   4E61      31      49       1   MyCode      
+     w5ms                                      4E92       6       6       4   MyCode      
+     w11                                       4E98       D      13       0   MyCode      
+     w500ns                                    4EA5       5       5      18   MyCode      
+     waitbf                                    4EAA       3       3       2   MyCode      
+     wbf1                                      4EAD      2B      43       0   MyCode      
+     asm_main                                  4ED8       5       5       1   MyCode      
+     TOF_int                                   4EDD      10      16       2   MyCode      
+     rtmon_SWI                                 4EED       8       8       4   MyCode      
+     sci1_init                                 4EF5      1E      30       0   MyCode      
+     sc4bd                                     4F13       7       7       0   MyCode      
+     sc9bd                                     4F1A       7       7       0   MyCode      
+     sc19bd                                    4F21       7       7       0   MyCode      
+     sc38bd                                    4F28       7       7       0   MyCode      
+     sc57bd                                    4F2F       7       7       0   MyCode      
+     sc115bd                                   4F36       5       5       0   MyCode      
+     scend                                     4F3B       E      14       0   MyCode      
+     sci1_in                                   4F49       1       1       1   MyCode      
+     si1                                       4F4A       C      12       0   MyCode      
+     sci1_out                                  4F56       2       2       1   MyCode      
+     so1                                       4F58       D      13       0   MyCode      
+     sci1_str_out                              4F65       4       4       5   MyCode      
+     scs1                                      4F69       C      12       0   MyCode      
+     scs_end                                   4F75       4       4       0   MyCode      
      VAR00001                                  FFEE       2       2       0   .text       
 
 *********************************************************************************************
@@ -1284,64 +1347,63 @@ PRINTF.C.o (ansifs.lib):
   set_printf vsprintf 
 RTSHC08.C.o (ansifs.lib):
   _PUSH_ARGS_D _ENTER_UNARY_L64 _ENTER_UNARY_L64_4 _ENTER_BINARY_L_LC 
-  _ENTER_BINARY_L64 _ENTER_BINARY_L64_LC _ENTER_BINARY_L64_RC 
-  _LAND_k_is_k_and_j _LOR_k_is_k_or_j _LXOR_k_is_k_xor_j _ABS_L_HX _SPLITSIGN_L 
-  _LMODS_k_is_k_mod_j _LDIVS_k_is_k_div_j _CMP24_k_rel_j _BMULS _IMODS_STAR08 
-  _IDIVU_8 _IMODU_8 _ILSL _LDEC _LNOT _LADD_RC _LSUB_LC _LSUB_RC _LAND _LAND_RC 
-  _LOR _LOR_RC _LXOR _LXOR_RC _LMUL _LDIVS _LDIVS_LC _LDIVS_RC _LDIVU _LDIVU_LC 
-  _LMODS _LMODS_LC _LMODS_RC _LMODU _LMODU_LC _LASR _LLSR _LLSL _LCMP_RC 
-  _PUSH_ARGS_24 _ENTER_BINARY_24_RC _ENTER_BINARY_24 _CMP24 _CMP24_RC _COPY_L 
-  _POP64 _STORE32 _STORE64 _SEXT8_32 _CALL_STAR08 _CALL_STAR08_FAR 
-  _Jump_Table_Header_Addr _Search_Table_16_Addr _Search_Table_16_Offset 
-  _CONV_FAR_TO_NEAR _CONV_FAR_TO_LINEAR _CONV_LINEAR_TO_FAR F_INFK_Unary 
-  _FDIV_K_is_L_div_K _FDIV_Common _FSUB_RC _FSUB_LC _FDIV _FDIV_RC _FDIV_LC 
-  _FUTRUNC _FABS _FCMP _FINC _FDEC _FSFLOAT D_TLK D_TLRes D_TKRes D_XGKL D_CLRK 
-  D_CLRK_Unary D_NANK D_NANK_Unary D_INFK D_INFK_Unary _DUNPACK_k_to_K 
-  _DUNPACK_k_to_K_Unary _DUNPACK_j_to_L _DPACK_K_to_k _DPACK_K_to_k_Unary 
-  D_NORMK_Unary D_NORMK _DADD_K_is_K_plus_L _DMUL_K_is_K_times_L 
-  _DDIV_K_is_L_div_K _DCMP_k_rel_j _D_FLOATK _D_LONGK _D_FTODK _D_DTOFK 
-  _DADD_Common _DSUB_Common _DMUL_Common _DDIV_Common _DADD _DADD_RC _DSUB 
-  _DSUB_RC _DSUB_LC _DMUL _DMUL_RC _DDIV _DDIV_LC _DDIV_RC _DCMP _DCMP_RC _DINC 
-  _DDEC _DNEG _DABS _DSFLOAT _DUFLOAT _DSTRUNC _DUTRUNC _DSHORT _DLONG 
+  _ENTER_BINARY_L64 _ENTER_BINARY_L64_LC _ENTER_BINARY_L64_RC _k_is_k_plus_j_l 
+  _k_is_k_plus_j_i _LAND_k_is_k_and_j _LOR_k_is_k_or_j _LXOR_k_is_k_xor_j 
+  _LMUL_k_is_k_mul_j _ABS_L_HX _SPLITSIGN_L _LMODS_k_is_k_mod_j 
+  _LDIVS_k_is_k_div_j _CMP24_k_rel_j _BMULS _IMODU_STAR08 _IDIVU_8 _IMODU_8 
+  _ILSL _LNOT _LADD_RC _LSUB_LC _LSUB_RC _LAND _LAND_RC _LOR _LOR_RC _LXOR 
+  _LXOR_RC _LMUL _LMUL_RC _LDIVS _LDIVS_LC _LDIVS_RC _LDIVU _LDIVU_LC _LMODS 
+  _LMODS_LC _LMODS_RC _LMODU _LMODU_LC _LASR _LLSR _LLSL _LCMP_RC _PUSH_ARGS_24 
+  _ENTER_BINARY_24_RC _ENTER_BINARY_24 _CMP24 _CMP24_RC _COPY_L _POP64 _STORE32 
+  _STORE64 _SEXT8_32 _CALL_STAR08 _CALL_STAR08_FAR _Jump_Table_Header_Addr 
+  _Search_Table_16_Addr _Search_Table_16_Offset _CONV_FAR_TO_NEAR 
+  _CONV_FAR_TO_LINEAR _CONV_LINEAR_TO_FAR F_INFK_Unary _FDIV_K_is_L_div_K 
+  _FDIV_Common _FSUB_RC _FSUB_LC _FDIV _FDIV_RC _FDIV_LC _FUTRUNC _FABS _FCMP 
+  _FINC _FDEC _FSFLOAT D_TLK D_TLRes D_TKRes D_XGKL D_CLRK D_CLRK_Unary D_NANK 
+  D_NANK_Unary D_INFK D_INFK_Unary _DUNPACK_k_to_K _DUNPACK_k_to_K_Unary 
+  _DUNPACK_j_to_L _DPACK_K_to_k _DPACK_K_to_k_Unary D_NORMK_Unary D_NORMK 
+  _DADD_K_is_K_plus_L _DMUL_K_is_K_times_L _DDIV_K_is_L_div_K _DCMP_k_rel_j 
+  _D_FLOATK _D_LONGK _D_FTODK _D_DTOFK _DADD_Common _DSUB_Common _DMUL_Common 
+  _DDIV_Common _DADD _DADD_RC _DSUB _DSUB_RC _DSUB_LC _DMUL _DMUL_RC _DDIV 
+  _DDIV_LC _DDIV_RC _DCMP _DCMP_RC _DINC _DDEC _DNEG _DABS _DSFLOAT _DUFLOAT 
+  _DSTRUNC _DUTRUNC _DSHORT _DLONG 
 STRING.C.o (ansifs.lib):
   strerror memchr memcmp memcpy2 memcpy _memcpy_8bitCount memmove memset 
   _memset_clear_8bitCount strset strcat strncat strcpy strncpy strcmp strchr 
   strrchr strspn strcspn strpbrk strtok strcoll strxfrm 
 D:\wsd\rtmon\rtmon\build\codewarrior\gb60\rtmon_hc08gb60_Data\Standard\ObjectCode\rtmon_services.c.o (rtmon.lib):
-  rtm_end rtm_continue_p rtm_abort_p rtm_create_q rtm_write_q rtm_write_q_w 
-  rtm_read_q rtm_read_q_w 
+  rtm_end rtm_abort_p rtm_write_q_w rtm_read_q_w 
 NOT USED VARIABLES
 RTSHC08.C.o (ansifs.lib):
   _PowOfTwo_8 _PowOfTwo_16 _PowOfTwo_32 plus1 minus1 plus1d minus1d errno 
 STRING.C.o (ansifs.lib):
   STRING..1 next.2 
-D:\wsd\rtmon\rtmon\build\codewarrior\gb60\rtmon_hc08gb60_Data\Standard\ObjectCode\rtmon_services.c.o (rtmon.lib):
-  rtmon_qpool 
-D:\wsd\rtmon\rtmon\build\codewarrior\gb60\rtmon_hc08gb60_Data\Standard\ObjectCode\rtmon_data.c.o (rtmon.lib):
-  rtmon_qpool 
 
 *********************************************************************************************
 COPYDOWN SECTION
 ---------------------------------------------------------------------------------------------
-------- ROM-ADDRESS: 0x4ACE ---- SIZE       4 ---
+------- ROM-ADDRESS: 0x4F79 ---- SIZE       4 ---
 Filling bytes inserted
- 00100100
-------- ROM-ADDRESS: 0x4AD2 ---- RAM-ADDRESS: 0x100 ---- SIZE       2 ---
+ 00110103
+------- ROM-ADDRESS: 0x4F7D ---- RAM-ADDRESS: 0x103 ---- SIZE       1 ---
+Name of initialized Object : cas:3
+ 7B
+------- ROM-ADDRESS: 0x4F7E ---- RAM-ADDRESS: 0x104 ---- SIZE       2 ---
 Name of initialized Object : kurzor
  FFFF
-------- ROM-ADDRESS: 0x4AD4 ---- SIZE       1 ---
+------- ROM-ADDRESS: 0x4F80 ---- SIZE       1 ---
 Filling bytes inserted
  00
-------- ROM-ADDRESS: 0x4AD5 ---- RAM-ADDRESS: 0x103 ---- SIZE       9 ---
+------- ROM-ADDRESS: 0x4F81 ---- RAM-ADDRESS: 0x107 ---- SIZE       9 ---
 Name of initialized Object : programy:1
  4E008F0012 002A002B
-------- ROM-ADDRESS: 0x4ADE ---- RAM-ADDRESS: 0x10C ---- SIZE       2 ---
+------- ROM-ADDRESS: 0x4F8A ---- RAM-ADDRESS: 0x110 ---- SIZE       2 ---
 Name of initialized Object : factoryNum
  0457
-------- ROM-ADDRESS: 0x4AE0 ---- RAM-ADDRESS: 0x10E ---- SIZE       2 ---
+------- ROM-ADDRESS: 0x4F8C ---- RAM-ADDRESS: 0x112 ---- SIZE       2 ---
 Name of initialized Object : factoryDate
  1996
-------- ROM-ADDRESS: 0x4AE2 ---- SIZE       2 ---
+------- ROM-ADDRESS: 0x4F8E ---- SIZE       2 ---
 Filling bytes inserted
  0000
 
@@ -1363,65 +1425,82 @@ gpio_write_d              USES _PTDD
 gpio_mode_d               USES _PTDDD _PTDPE 
 gpio_read_e               USES _PTED 
 gpio_hard_init            USES gpio_mode_c gpio_mode_d 
-main                      USES asm_main sci1_init dinit dcls STRING.Pracka.2 
-                                dtext gpio_hard_init gpio_button_init gpio_led_init 
-                                gpio_led_off _ATD1C _ATD1PE _PTADD _PTAPE init rtm_init 
+main                      USES asm_main dinit dcls STRING.Pracka.2 dtext 
+                                gpio_hard_init gpio_button_init gpio_led_init gpio_led_off 
+                                _ATD1C _ATD1PE _PTADD _PTAPE init rtm_init 
                                 STRING.proc2.3 sci pSCI rtm_create_p STRING.proc3.4 keyboard 
                                 pKeyboard STRING.proc5.5 program pProgram STRING.proc6.6 
-                                casPracky pCas STRING.proc7.7 menu pMenu rtm_start_p 
-                                rtm_delay_p setcursor STRING.Nyni.muzete.8 
-                                STRING.pracku.vypnout.9 _SRS 
+                                casPracky pCas STRING.proc7.7 menu pMenu STRING.no.8 s1 
+                                rtm_create_q rtm_start_p rtm_delay_p setcursor 
+                                STRING.Nyni.muzete.9 STRING.pracku.vypnout.10 _SRS 
 casPracky                 USES cas _LINC _POP32 pCas rtm_stop_p 
-menu                      USES _SRS _ATD1SC _ATD1R kurzor dcls uroven 
-                                STRING.Konec.10 STRING.Zpet.11 dtext menu 
-                                STRING.Vyber.programu.12 STRING.Odlozeny.start.13 STRING.Cas.14 
-                                STRING.Diagnostika.15 STRING.Start.16 STRING.Program.1.17 
-                                STRING.Program.2.18 STRING.Program.3.19 STRING.Program.4.20 
-                                STRING.Program.5.21 spozdeni _IMODU_STAR08 _IMUL_STAR08 
-                                _IDIVU_STAR08 STRING.Spozdeni..d..d.22 buffer sprintf 
-sci                       USES STRING.Zadejte.heslo...23 sci1_str_out pozice 
-                                sci1_in znak buffer STRING.1234.24 strstr sci 
-                                STRING.setTime.25 STRING.setTime.26 _IMUL_STAR08 _SEXT16_32 cas 
-                                _POP32 _LADD STRING.clean.27 stats celkovyCas 
-                                STRING.getTime.28 _LMODU_RC _LMUL_RC _LDIVU_RC STRING..d..d...29 
-                                sprintf STRING.getActiveTime.30 STRING..d..d...31 
-                                STRING.getFactory.32 factoryDate factoryNum 
-                                STRING.V.robn....slo....d...33 STRING.getStats.34 
-                                STRING.Program.1....d..Prog.35 STRING.konec.36 pSCI rtm_stop_p 
-keyboard                  USES _SRS keyboard stav uroven douta pKeyboard 
-                                rtm_delay_p kurzor programy initState gpio_led_on 
-                                rtm_stop_p pCas dcls cas _LMODU_RC _LMUL_RC _LDIVU_RC 
-                                STRING..d..d.37 buffer sprintf dtext STRING.Diagnostika.38 
-                                pSCI rtm_start_p spozdeni _LADD _POP32 prog stats 
-                                zacatekPrani pProgram _ATD1SC _ATD1R _IMUL_STAR08 
-                                STRING..d..d.39 STRING..d..d.40 rtm_ch_period_p 
+menu                      USES menu _SRS _ATD1SC _LDEC _POP32 _ATD1R kurzor 
+                                dcls uroven STRING.Konec.11 STRING.Zpet.12 dtext 
+                                STRING.Vyber.programu.13 STRING.Odlozeny.start.14 STRING.Cas.15 
+                                STRING.Diagnostika.16 STRING.Start.17 STRING.Program.1.18 
+                                STRING.Program.2.19 STRING.Program.3.20 STRING.Program.4.21 
+                                STRING.Program.5.22 STRING.Vypsani.casu.23 
+                                STRING.Nastaveni.hodin.24 STRING.Nastaveni.minut.25 STRING.Cas..26 
+                                _IDIVU_STAR08 _IMUL_STAR08 _SEXT16_32 STRING.Cas..27 buffer 
+                                intToTime STRING.Spozdeni..28 pMenu rtm_delay_p spozdeni 
+sci                       USES STRING.Zadejte.heslo...29 sci1_str_out pozice 
+                                sci1_in buffer STRING.1234.30 strstr 
+                                STRING.Prihlasen...31 sci STRING.setTime.32 STRING.setTime.33 
+                                _IMUL_STAR08 _SEXT16_32 cas _POP32 _LADD STRING.clean.34 
+                                stats celkovyCas STRING.getTime.35 intToTime 
+                                STRING....36 STRING.getActiveTime.37 STRING....38 
+                                STRING.getFactory.39 factoryNum STRING.Vyrobni.cislo....d...40 
+                                sprintf factoryDate STRING.Datum.vyroby....s...41 
+                                STRING.getStats.42 STRING.Program.1....d...43 
+                                STRING.Program.2....d...44 STRING.Program.3....d...45 
+                                STRING.Program.4....d...46 STRING.Program.5....d...47 STRING.konec.48 
+                                STRING.Odhlasen...49 pKeyboard rtm_ch_period_p rtm_start_p pSCI 
+                                rtm_stop_p 
+keyboard                  USES _SRS gpio_button_test keyboard stav s1 
+                                rtm_read_q rtm_write_q pKeyboard rtm_delay_p _ICMP kurzor 
+                                pozice uroven programy initState STRING.Zvoleno.50 
+                                STRING.Program.1.51 STRING.Zvoleno.52 STRING.Program.2.53 
+                                STRING.Zvoleno.54 STRING.Program.3.55 STRING.Zvoleno.56 
+                                STRING.Program.4.57 STRING.Zvoleno.58 STRING.Program.5.59 _ATD1SC 
+                                _ATD1R spozdeni STRING.Zvoleno.spozdeni.60 buffer 
+                                intToTime _IDIVU_STAR08 _IMUL_STAR08 _SEXT16_32 cas 
+                                _POP32 STRING.Cas.nastaven.61 STRING.Cas.nastaven.62 
+                                dcls STRING.Cas..63 dtext pCas pMenu rtm_stop_p 
+                                init rtm_continue_p STRING.Diagnostika.64 pSCI 
+                                _LADD stats zacatekPrani pProgram rtm_start_p 
                                 driver_pracka_vypust driver_pracka_napust driver_pracka_topeni 
-                                driver_buben_rychlost driver_buben_smer gpio_button_test 
-                                _IDIVU_STAR08 gpio_led_off 
-program                   USES dcls setcursor STRING.Program.41 dtext 
-                                initState stav programSequence pProgram rtm_stop_p 
+                                driver_buben_rychlost driver_buben_smer prog setcursor gpio_led_on 
+                                gpio_led_off rtm_ch_period_p 
+program                   USES dcls setcursor STRING.Program.65 dtext 
+                                initState stav prog programSequence 
+                                STRING.Program.nezvolen.66 pProgram rtm_stop_p 
 programSequence           USES stav prog _IASR programSequence 
                                 _Jump_Table_Header_Offset cas spozdeni _LCMP dcls 
-                                STRING.Program.zacne.za.42 dtext setcursor _LSUB _LDIVU_RC _LMUL_RC 
-                                STRING..d..d.43 buffer sprintf STRING.Predpirka.44 predpirka 
-                                STRING.Hlavni.prani.45 hlavniPrani STRING.Machani.46 machani 
-                                STRING.Zdimani.47 zdimani STRING.Ukoncovani.48 ukonci 
+                                STRING.Program.zacne.za.67 dtext setcursor _LSUB buffer intToTime 
+                                pProgram rtm_delay_p STRING.Predpirka.68 predpirka 
+                                STRING.Hlavni.prani.69 hlavniPrani STRING.Machani.70 machani 
+                                STRING.Zdimani.71 zdimani STRING.Ukoncovani.72 ukonci 
                                 gpio_led_off zacatekPrani celkovyCas _LADD _POP32 initState 
-ukonci                    USES cas driver_pracka_napust driver_pracka_vypust 
-                                driver_pracka_topeni driver_buben_rychlost driver_buben_smer 
-                                driver_pracka_hladina driver_pracka_teplota _SEXT16_32 _LCMP 
-predpirka                 USES driver_pracka_napust driver_pracka_hladina 
-                                tocBubnem dokonciCinnost 
+                                STRING.Ukonceno.73 
+ukonci                    USES driver_pracka_napust driver_pracka_vypust 
+                                driver_pracka_topeni driver_buben_rychlost driver_buben_smer _SRS 
+                                driver_pracka_hladina driver_pracka_teplota cas _SEXT16_32 _LCMP 
+predpirka                 USES driver_pracka_napust _SRS driver_pracka_hladina 
+                                stav tocBubnem dokonciCinnost 
 hlavniPrani               USES prog _ILSR _PUSH_CC _POP_CC _Jump_Table_Offset 
-                                driver_pracka_napust driver_pracka_hladina driver_pracka_teplota 
-                                driver_pracka_topeni tocBubnem dokonciCinnost 
-machani                   USES driver_pracka_napust driver_pracka_hladina 
-                                tocBubnem dokonciCinnost 
+                                driver_pracka_napust _SRS driver_pracka_hladina 
+                                driver_pracka_teplota driver_pracka_topeni stav tocBubnem 
+                                dokonciCinnost 
+machani                   USES driver_pracka_napust _SRS driver_pracka_hladina 
+                                stav tocBubnem dokonciCinnost 
 zdimani                   USES cas driver_buben_smer driver_buben_rychlost 
-                                driver_pracka_vypust _SRS _SEXT16_32 _LCMP 
-dokonciCinnost            USES driver_pracka_vypust driver_pracka_hladina cas 
-                                _SRS _SEXT16_32 _LCMP 
+                                driver_pracka_vypust _SRS _SEXT16_32 _LCMP stav 
+dokonciCinnost            USES driver_pracka_vypust driver_pracka_hladina 
+                                driver_pracka_teplota stav cas _SRS _SEXT16_32 _LCMP 
 tocBubnem                 USES cas _SEXT16_32 _LCMP driver_buben_smer _SRS 
+                                stav 
+intToTime                 USES _LDIVU_RC intToTime _IMODS_STAR08 _LMODU_RC 
+                                _IDIVS_STAR08 
 frexpf                    USES _COPY 
 Ten                       USES fpow10 fpow_10 Ten _FMUL _POP32 _COPY 
 vprintf                   USES _out vprintf _Search_Table_8_Offset 
@@ -1436,17 +1515,16 @@ sprintf                   USES pbuf deposit_char vprintf
 _ENTER_BINARY_L           USES _PUSH_ARGS_L 
 _ENTER_BINARY_L_RC        USES _PUSH_ARGS_L 
 _SPLITSIGN                USES _IDIVMOD 
-_LMUL_k_is_k_mul_j        USES _k_is_k_plus_j_l _k_is_k_plus_j_i 
 _LMODU_k_is_k_mod_j       USES _LDIVMOD 
 _LDIVU_k_is_k_div_j       USES _LDIVMOD 
 _IDIVS_STAR08             USES _SPLITSIGN 
 _IDIVU_STAR08             USES _IDIVMOD 
-_IMODU_STAR08             USES _IDIVMOD 
+_IMODS_STAR08             USES _SPLITSIGN 
 _LINC                     USES _ENTER_UNARY_L 
+_LDEC                     USES _ENTER_UNARY_L 
 _LNEG                     USES _ENTER_UNARY_L 
 _LADD                     USES _ENTER_BINARY_L _LADD_k_is_k_plus_j 
 _LSUB                     USES _ENTER_BINARY_L _LSUB_k_is_k_minus_j 
-_LMUL_RC                  USES _ENTER_BINARY_L_RC _LMUL_k_is_k_mul_j 
 _LDIVU_RC                 USES _ENTER_BINARY_L_RC _LDIVU_k_is_k_div_j 
 _LMODU_RC                 USES _ENTER_BINARY_L_RC _LMODU_k_is_k_mod_j 
 _LCMP                     USES _ENTER_BINARY_L _LCMP_k_rel_j 
@@ -1480,9 +1558,14 @@ rtm_create_p              USES rtmon_status rtm_create_p _SRS _TPM1SC
 rtm_start_p               USES _SRS _TPM1SC rtmon_status rtmon_SWI 
 rtm_delay_p               USES _TPM1SC rtmon_data _TPM1CNT _TPM1MOD 
                                 rtm_InitTimer rtmon_curproc rtmon_status rtmon_SWI 
+rtm_continue_p            USES _TPM1SC rtmon_status rtmon_SWI 
 rtm_ch_period_p           USES _TPM1SC 
 rtm_stop_p                USES _TPM1SC rtmon_curproc rtmon_status rtmon_SWI 
                                 rtmon_initprocstack 
+rtm_create_q              USES rtm_create_q _TPM1SC rtmon_lastq rtmon_queues 
+                                rtmon_qpool 
+rtm_write_q               USES _TPM1SC 
+rtm_read_q                USES _TPM1SC 
 rtmon_kernel              USES rtmon_status _TPM1SC rtmon_curproc rtmon_tobesp 
                                 rtmon_initprocstack rtmon_scheduler g_TickCount 
                                 rtmon_refreshqwaiting rtmon_pq_findhiestpriority rtmon_toberun 
@@ -1519,8 +1602,6 @@ DEPENDENCY TREE
  +- main                
  |  | 
  |  +- asm_main            
- |  |    
- |  +- sci1_init           
  |  |    
  |  +- dinit               
  |  |  | 
@@ -1592,33 +1673,35 @@ DEPENDENCY TREE
  |  |  |  |       
  |  |  |  +- _LADD_k_is_k_plus_j 
  |  |  |       
- |  |  +- _LMODU_RC           
+ |  |  +- intToTime           
  |  |  |  | 
- |  |  |  +- _ENTER_BINARY_L_RC  
+ |  |  |  +- _LDIVU_RC           
  |  |  |  |  | 
- |  |  |  |  +- _PUSH_ARGS_L         (see above)
- |  |  |  |     
- |  |  |  +- _LMODU_k_is_k_mod_j 
+ |  |  |  |  +- _ENTER_BINARY_L_RC  
+ |  |  |  |  |  | 
+ |  |  |  |  |  +- _PUSH_ARGS_L         (see above)
+ |  |  |  |  |     
+ |  |  |  |  +- _LDIVU_k_is_k_div_j 
+ |  |  |  |     | 
+ |  |  |  |     +- _LDIVMOD            
+ |  |  |  |          
+ |  |  |  +- _IMODS_STAR08       
+ |  |  |  |  | 
+ |  |  |  |  +- _SPLITSIGN          
+ |  |  |  |     | 
+ |  |  |  |     +- _IDIVMOD            
+ |  |  |  |          
+ |  |  |  +- _LMODU_RC           
+ |  |  |  |  | 
+ |  |  |  |  +- _ENTER_BINARY_L_RC   (see above)
+ |  |  |  |  |  
+ |  |  |  |  +- _LMODU_k_is_k_mod_j 
+ |  |  |  |     | 
+ |  |  |  |     +- _LDIVMOD             (see above)
+ |  |  |  |        
+ |  |  |  +- _IDIVS_STAR08       
  |  |  |     | 
- |  |  |     +- _LDIVMOD            
- |  |  |          
- |  |  +- _LMUL_RC            
- |  |  |  | 
- |  |  |  +- _ENTER_BINARY_L_RC   (see above)
- |  |  |  |  
- |  |  |  +- _LMUL_k_is_k_mul_j  
- |  |  |     | 
- |  |  |     +- _k_is_k_plus_j_l    
- |  |  |     |    
- |  |  |     +- _k_is_k_plus_j_i    
- |  |  |          
- |  |  +- _LDIVU_RC           
- |  |  |  | 
- |  |  |  +- _ENTER_BINARY_L_RC   (see above)
- |  |  |  |  
- |  |  |  +- _LDIVU_k_is_k_div_j 
- |  |  |     | 
- |  |  |     +- _LDIVMOD             (see above)
+ |  |  |     +- _SPLITSIGN           (see above)
  |  |  |        
  |  |  +- sprintf             
  |  |  |  | 
@@ -1666,12 +1749,8 @@ DEPENDENCY TREE
  |  |  |     |  | 
  |  |  |     |  +- _COPY                (see above)
  |  |  |     |     
- |  |  |     +- _IDIVS_STAR08       
- |  |  |     |  | 
- |  |  |     |  +- _SPLITSIGN          
- |  |  |     |     | 
- |  |  |     |     +- _IDIVMOD            
- |  |  |     |          
+ |  |  |     +- _IDIVS_STAR08        (see above)
+ |  |  |     |  
  |  |  |     +- Ten                 
  |  |  |     |  | 
  |  |  |     |  +- _FMUL               
@@ -1786,70 +1865,74 @@ DEPENDENCY TREE
  |  |  |        |  
  |  |  |        +- _FCMP_k_rel_j       
  |  |  |             
+ |  |  +- rtm_ch_period_p     
+ |  |  |    
+ |  |  +- rtm_start_p         
+ |  |  |  | 
+ |  |  |  +- rtmon_SWI           
+ |  |  |     | 
+ |  |  |     +- TOF_int             
+ |  |  |        | 
+ |  |  |        +- rtmon_kernel        
+ |  |  |           | 
+ |  |  |           +- rtmon_initprocstack  (see above)
+ |  |  |           |  
+ |  |  |           +- rtmon_scheduler     
+ |  |  |           |    
+ |  |  |           +- rtmon_refreshqwaiting
+ |  |  |           |    
+ |  |  |           +- rtmon_pq_findhiestpriority
+ |  |  |                
  |  |  +- rtm_stop_p          
  |  |     | 
- |  |     +- rtmon_SWI           
- |  |     |  | 
- |  |     |  +- TOF_int             
- |  |     |     | 
- |  |     |     +- rtmon_kernel        
- |  |     |        | 
- |  |     |        +- rtmon_initprocstack  (see above)
- |  |     |        |  
- |  |     |        +- rtmon_scheduler     
- |  |     |        |    
- |  |     |        +- rtmon_refreshqwaiting
- |  |     |        |    
- |  |     |        +- rtmon_pq_findhiestpriority
- |  |     |             
+ |  |     +- rtmon_SWI            (see above)
+ |  |     |  
  |  |     +- rtmon_initprocstack  (see above)
  |  |        
  |  +- rtm_create_p         (see above)
  |  |  
  |  +- keyboard            
  |  |  | 
- |  |  +- douta               
- |  |  |  | 
- |  |  |  +- wr_data             
- |  |  |     | 
- |  |  |     +- w500ns               (see above)
- |  |  |     |  
- |  |  |     +- waitbf               (see above)
- |  |  |        
+ |  |  +- gpio_button_test    
+ |  |  |    
+ |  |  +- rtm_read_q          
+ |  |  |    
+ |  |  +- rtm_write_q         
+ |  |  |    
  |  |  +- rtm_delay_p         
  |  |  |  | 
  |  |  |  +- rtm_InitTimer       
  |  |  |  |    
  |  |  |  +- rtmon_SWI            (see above)
  |  |  |     
- |  |  +- gpio_led_on         
- |  |  |    
- |  |  +- rtm_stop_p           (see above)
+ |  |  +- _ICMP                (see above)
+ |  |  |  
+ |  |  +- intToTime            (see above)
+ |  |  |  
+ |  |  +- _IDIVU_STAR08       
+ |  |  |  | 
+ |  |  |  +- _IDIVMOD             (see above)
+ |  |  |     
+ |  |  +- _IMUL_STAR08         (see above)
+ |  |  |  
+ |  |  +- _SEXT16_32           (see above)
+ |  |  |  
+ |  |  +- _POP32               (see above)
  |  |  |  
  |  |  +- dcls                 (see above)
  |  |  |  
- |  |  +- _LMODU_RC            (see above)
- |  |  |  
- |  |  +- _LMUL_RC             (see above)
- |  |  |  
- |  |  +- _LDIVU_RC            (see above)
- |  |  |  
- |  |  +- sprintf              (see above)
- |  |  |  
  |  |  +- dtext                (see above)
  |  |  |  
- |  |  +- rtm_start_p         
+ |  |  +- rtm_stop_p           (see above)
+ |  |  |  
+ |  |  +- rtm_continue_p      
  |  |  |  | 
  |  |  |  +- rtmon_SWI            (see above)
  |  |  |     
  |  |  +- _LADD                (see above)
  |  |  |  
- |  |  +- _POP32               (see above)
+ |  |  +- rtm_start_p          (see above)
  |  |  |  
- |  |  +- _IMUL_STAR08         (see above)
- |  |  |  
- |  |  +- rtm_ch_period_p     
- |  |  |    
  |  |  +- driver_pracka_vypust
  |  |  |  | 
  |  |  |  +- gpio_write_c        
@@ -1874,20 +1957,20 @@ DEPENDENCY TREE
  |  |  |  | 
  |  |  |  +- gpio_write_c         (see above)
  |  |  |     
- |  |  +- gpio_button_test    
+ |  |  +- setcursor           
  |  |  |    
- |  |  +- _IDIVU_STAR08       
- |  |  |  | 
- |  |  |  +- _IDIVMOD             (see above)
- |  |  |     
+ |  |  +- gpio_led_on         
+ |  |  |    
  |  |  +- gpio_led_off         (see above)
+ |  |  |  
+ |  |  +- rtm_ch_period_p      (see above)
  |  |     
  |  +- program             
  |  |  | 
  |  |  +- dcls                 (see above)
  |  |  |  
- |  |  +- setcursor           
- |  |  |    
+ |  |  +- setcursor            (see above)
+ |  |  |  
  |  |  +- dtext                (see above)
  |  |  |  
  |  |  +- programSequence     
@@ -1906,11 +1989,9 @@ DEPENDENCY TREE
  |  |  |  |  
  |  |  |  +- _LSUB                (see above)
  |  |  |  |  
- |  |  |  +- _LDIVU_RC            (see above)
+ |  |  |  +- intToTime            (see above)
  |  |  |  |  
- |  |  |  +- _LMUL_RC             (see above)
- |  |  |  |  
- |  |  |  +- sprintf              (see above)
+ |  |  |  +- rtm_delay_p          (see above)
  |  |  |  |  
  |  |  |  +- predpirka           
  |  |  |  |  | 
@@ -1936,6 +2017,12 @@ DEPENDENCY TREE
  |  |  |  |     |  
  |  |  |  |     +- driver_pracka_hladina (see above)
  |  |  |  |     |  
+ |  |  |  |     +- driver_pracka_teplota
+ |  |  |  |     |  | 
+ |  |  |  |     |  +- gpio_read_e          (see above)
+ |  |  |  |     |  |  
+ |  |  |  |     |  +- gpio_read_d          (see above)
+ |  |  |  |     |     
  |  |  |  |     +- _SEXT16_32           (see above)
  |  |  |  |     |  
  |  |  |  |     +- _LCMP                (see above)
@@ -1954,12 +2041,8 @@ DEPENDENCY TREE
  |  |  |  |  |  
  |  |  |  |  +- driver_pracka_hladina (see above)
  |  |  |  |  |  
- |  |  |  |  +- driver_pracka_teplota
- |  |  |  |  |  | 
- |  |  |  |  |  +- gpio_read_e          (see above)
- |  |  |  |  |  |  
- |  |  |  |  |  +- gpio_read_d          (see above)
- |  |  |  |  |     
+ |  |  |  |  +- driver_pracka_teplota (see above)
+ |  |  |  |  |  
  |  |  |  |  +- driver_pracka_topeni (see above)
  |  |  |  |  |  
  |  |  |  |  +- tocBubnem            (see above)
@@ -2028,20 +2111,28 @@ DEPENDENCY TREE
  |  |     
  |  +- menu                
  |  |  | 
+ |  |  +- _LDEC               
+ |  |  |  | 
+ |  |  |  +- _ENTER_UNARY_L       (see above)
+ |  |  |     
+ |  |  +- _POP32               (see above)
+ |  |  |  
  |  |  +- dcls                 (see above)
  |  |  |  
  |  |  +- dtext                (see above)
  |  |  |  
- |  |  +- _IMODU_STAR08       
- |  |  |  | 
- |  |  |  +- _IDIVMOD             (see above)
- |  |  |     
- |  |  +- _IMUL_STAR08         (see above)
- |  |  |  
  |  |  +- _IDIVU_STAR08        (see above)
  |  |  |  
- |  |  +- sprintf              (see above)
+ |  |  +- _IMUL_STAR08         (see above)
+ |  |  |  
+ |  |  +- _SEXT16_32           (see above)
+ |  |  |  
+ |  |  +- intToTime            (see above)
+ |  |  |  
+ |  |  +- rtm_delay_p          (see above)
  |  |     
+ |  +- rtm_create_q        
+ |  |    
  |  +- rtm_start_p          (see above)
  |  |  
  |  +- rtm_delay_p          (see above)
@@ -2067,5 +2158,5 @@ STATISTIC SECTION
 ExeFile:
 --------
 Number of blocks to be downloaded: 6
-Total size of all blocks to be downloaded: 12988
+Total size of all blocks to be downloaded: 14184
 

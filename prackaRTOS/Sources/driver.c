@@ -42,7 +42,7 @@ void driver_buben_rychlost(int rychlost)
         gpio_write_c(Pin4,1);
     } else
     {
-        gpio_write_c(Pin6,0);
+        gpio_write_c(Pin4,0);
     }
 }
 void driver_pracka_vypust(int vypust)
@@ -70,14 +70,14 @@ void driver_pracka_napust(int napust)
 }
 int driver_pracka_teplota(void)
 {
-    if(gpio_read_d(Pin1))
-        return 40;
+    if(gpio_read_e(Pin5))
+        return 90;
     else if(gpio_read_d(Pin4))
         return 60;
+    else if(gpio_read_d(Pin1))
+        return 40;
     else if(gpio_read_d(Pin5))
         return 30;
-    else if(gpio_read_e(Pin5))
-        return 90;
     else
         return 0;
 }
